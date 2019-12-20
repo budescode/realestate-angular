@@ -1,0 +1,240 @@
+<style>
+    #darkred{
+        color: darkred !important;
+    }
+</style>
+
+            <div class="container" id="jumboo">
+                    <div class="row">
+                      <div class="col-md-12 jumbotron img-responsive center-block inline-block" id="jumbo">
+<form action="" method="post" #searchForm='ngForm' (ngSubmit)='hideDiv()' >
+<div id="wrapper">
+<div class="demo">
+
+<div class="control-group">
+<label for="select-to">Select Locations:</label>
+
+  <div class="input-group mb-3 input-group-lg position-relative">
+    <input type="text" class="form-control" (focus)="showDiv()" name='search' [(ngModel)]='searchModel.name' (keyup) = 'filterCountryDetails()'>
+
+    <div class="input-group-prepend">
+      <!-- <span class="input-group-text" type='submit'>Submit</span> -->
+      <button type='submit'>Submit</button>
+    </div>
+
+<div class="col-md-12">
+    <div style="height: 300px; overflow-y: auto; overflow-x: hidden;" *ngIf='dis'>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor='let i of countrydata' (click)='getDetails(i)'>{{i.name}}</li>
+
+
+        </ul>
+
+   </div>
+</div>
+
+  </div>
+
+
+<!-- <select id="select-to" class="contacts" placeholder="Pick some locations..." name='hiddensearch'></select> -->
+</div>
+
+
+</div>
+</div>
+
+<div class="container">
+   <div class="row">
+
+
+<div class="col-lg-2 col-md-2 col-xs-6">
+    <label for="demo">Bed (min)</label>
+	<select name="Bed(min)" class="app-select form-control" required>
+        <option>Any</option>
+        <option>Studio</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+
+	</select>
+</div>
+
+
+<div class="col-lg-2 col-md-2 col-xs-6">
+    <label for="demo">Bed (max)</label>
+	<select name="Bed(max)" class="app-select form-control" required>
+        <option>Any</option>
+        <option>Studio</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+
+	</select>
+</div>
+
+
+
+
+<div class="col-lg-2 col-md-2 col-xs-6">
+<div class="form-group">
+<label for="sel1">Minimum Price</label>
+<select class="form-control" id="sel1" name="pricemin">
+<!--<option selected>Price (min)</option>-->
+<option>Any </option>
+<option>$50,000 </option>
+<option>$75,000</option>
+<option>$100,000</option>
+<option>$125,000</option>
+<option>$150,000</option>
+<option>$175,000</option>
+<option>$200,000</option>
+<option>$225,000</option>
+<option>$250,000</option>
+<option>$275,000</option>
+<option>$300,000</option>
+<option>$325,000</option>
+<option>$350,000</option>
+<option>$350,000</option>
+<option>$350,000</option>
+<option>$375,000</option>
+<option>$400,000</option>
+<option>$425,000</option>
+<option>$450,000</option>
+<option>$475,000</option>
+<option>$500,000</option>
+<option>$550,000</option>
+<option>$600,000</option>
+<option>$650,000</option>
+<option>$700,000</option>
+<option>$750,000</option>
+<option>$800,000</option>
+<option>$850,000</option>
+<option>$900,000</option>
+<option>$950,000</option>
+<option>$1,000,000</option>
+<option>$1,100,000</option>
+<option>$1,200,000</option>
+<option>$1,300,000</option>
+<option>$1,400,000</option>
+<option>$1,500,000</option>
+<option>$1,600,000</option>
+<option>$1,700,000</option>
+<option>$1,800,000</option>
+<option>$1,900,000</option>
+<option>$2,000,000</option>
+<option>$2,250,000</option>
+<option>$2,500,000</option>
+<option>$2,750,000</option>
+<option>$3,000,000</option>
+<option>$3,500,000</option>
+<option>$4,000,000</option>
+<option>$4,500,000</option>
+<option>$5,000,000 </option>
+<option>$7,000,000</option>
+<option>$8,000,000</option>
+<option>$9,000,000</option>
+<option>$10,000,000</option>
+<option>$12,000,000</option>
+<option>$15,000,000</option>
+</select>
+</div>
+</div>
+
+<div class="col-lg-2 col-md-2 col-xs-6">
+<div class="form-group">
+<label for="sel1">Maximum Price</label>
+<select class="form-control" id="sel1" name="pricemax">
+<!--<option selected>Price (max)</option>-->
+<option>Any </option>
+<option>$50,000 </option>
+<option>$75,000</option>
+<option>$100,000</option>
+<option>$125,000</option>
+<option>$150,000</option>
+<option>$175,000</option>
+<option>$200,000</option>
+<option>$225,000</option>
+<option>$250,000</option>
+<option>$275,000</option>
+<option>$300,000</option>
+<option>$325,000</option>
+<option>$350,000</option>
+<option>$350,000</option>
+<option>$350,000</option>
+<option>$375,000</option>
+<option>$400,000</option>
+<option>$425,000</option>
+<option>$450,000</option>
+<option>$475,000</option>
+<option>$500,000</option>
+<option>$550,000</option>
+<option>$600,000</option>
+<option>$650,000</option>
+<option>$700,000</option>
+<option>$750,000</option>
+<option>$800,000</option>
+<option>$850,000</option>
+<option>$900,000</option>
+<option>$950,000</option>
+<option>$1,000,000</option>
+<option>$1,100,000</option>
+<option>$1,200,000</option>
+<option>$1,300,000</option>
+<option>$1,400,000</option>
+<option>$1,500,000</option>
+<option>$1,600,000</option>
+<option>$1,700,000</option>
+<option>$1,800,000</option>
+<option>$1,900,000</option>
+<option>$2,000,000</option>
+<option>$2,250,000</option>
+<option>$2,500,000</option>
+<option>$2,750,000</option>
+<option>$3,000,000</option>
+<option>$3,500,000</option>
+<option>$4,000,000</option>
+<option>$4,500,000</option>
+<option>$5,000,000 </option>
+<option>$7,000,000</option>
+<option>$8,000,000</option>
+<option>$9,000,000</option>
+<option>$10,000,000</option>
+<option>$12,000,000</option>
+<option>$15,000,000</option>
+</select>
+</div>
+</div>
+
+
+<!-- <div class="col-lg-3 col-md-3 col-xs-6">
+<label for="demo">Property Type</label>
+    <select id="option-droup-demo" multiple="multiple" name='propertytype1'>
+    <optgroup label="All"  >
+    <option value="House" id='darkred'>House</option>
+    <option value="Apartment" id='darkred'>Apartment</option>
+    <option value="Town">Town</option>
+    <option value="Villa">Villa</option>
+    <option value="Acreage">Acreage</option>
+    <option value="Rural">Rural</option>
+    <option value="Block Of Units">Block Of Units</option>
+    <option value="Retirement Living">Retirement Living</option>
+    </optgroup>
+    </select>
+
+    <input id='btndarkred' type='submit' value='Search' class='btn btn-primary'>
+
+</div> -->
+</div>
+</div>
+
+
+</form>
+                      </div>
+                    </div>
+            </div>
+            <!--end container-->
+
