@@ -7,7 +7,7 @@
             <div class="container" id="jumboo">
                     <div class="row">
                       <div class="col-md-12 jumbotron img-responsive center-block inline-block" id="jumbo">
-<form action="" method="post" #searchForm='ngForm' (ngSubmit)='hideDiv()' >
+<form action="" method="post" #searchForm='ngForm' (ngSubmit)='submitForm()' >
 <div id="wrapper">
 <div class="demo">
 
@@ -25,7 +25,7 @@
 <div class="col-md-12">
     <div style="height: 300px; overflow-y: auto; overflow-x: hidden;" *ngIf='dis'>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor='let i of countrydata' (click)='getDetails(i)'>{{i.name}}</li>
+          <li class="list-group-item" *ngFor='let i of testlist' (click)='getDetails(i)'>{{i.suburb}} - {{i.state}}</li>
 
 
         </ul>
@@ -49,8 +49,8 @@
 
 <div class="col-lg-2 col-md-2 col-xs-6">
     <label for="demo">Bed (min)</label>
-	<select name="Bed(min)" class="app-select form-control" required>
-        <option>Any</option>
+	<select name="bedmin" class="app-select form-control" required [(ngModel)]='searchModel.bedmin'>
+        <option selected>Any</option>
         <option>Studio</option>
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -64,8 +64,8 @@
 
 <div class="col-lg-2 col-md-2 col-xs-6">
     <label for="demo">Bed (max)</label>
-	<select name="Bed(max)" class="app-select form-control" required>
-        <option>Any</option>
+	<select name="bedmax" class="app-select form-control" required [(ngModel)]='searchModel.bedmax'>
+        <option selected="selected">Any</option>
         <option>Studio</option>
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -82,9 +82,9 @@
 <div class="col-lg-2 col-md-2 col-xs-6">
 <div class="form-group">
 <label for="sel1">Minimum Price</label>
-<select class="form-control" id="sel1" name="pricemin">
+<select class="form-control" id="sel1" name="pricemin" [(ngModel)]='searchModel.pricemin'>
 <!--<option selected>Price (min)</option>-->
-<option>Any </option>
+<option selected>Any </option>
 <option>$50,000 </option>
 <option>$75,000</option>
 <option>$100,000</option>
@@ -147,9 +147,9 @@
 <div class="col-lg-2 col-md-2 col-xs-6">
 <div class="form-group">
 <label for="sel1">Maximum Price</label>
-<select class="form-control" id="sel1" name="pricemax">
+<select class="form-control" id="sel1" name="pricemax" [(ngModel)]='searchModel.pricemax'>
 <!--<option selected>Price (max)</option>-->
-<option>Any </option>
+<option selected>Any </option>
 <option>$50,000 </option>
 <option>$75,000</option>
 <option>$100,000</option>

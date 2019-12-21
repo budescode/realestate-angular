@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
 
+import { HttpClientModule } from '@angular/common/http';
+
 const appRoutes: Routes = [
 
   {
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     { enableTracing: true } // <-- debugging purposes only
     ),
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
