@@ -2,6 +2,7 @@ import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Classfunction } from '../classfunction';
 import { ApiserviceService } from '../service/apiservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -17,7 +18,7 @@ export class IndexComponent implements OnInit {
   realdata = [{name: 'DARWIN - NT'}, {name: 'BARTON - ACT'}, {name: 'PARAP - NT'}];
   countrydata = this.realdata;
   inputdata = '';
-  constructor(private api: ApiserviceService) { }
+  constructor(private api: ApiserviceService, private router: Router) { }
 
 
 
@@ -142,8 +143,11 @@ getCountryDetail = () => {
 }
 
 submitForm = () => {
-console.log('submitted');
-console.log(this.searchModel.name, this.searchModel.bedmin, this.searchModel.bedmax, this.searchModel.pricemin, this.searchModel.pricemax);
+  const searchparams = {name: this.searchModel.name, bedmin: this.searchModel.bedmin, bedmax: this.searchModel.bedmax,
+  pricemin: this.searchModel.pricemin, pricemax: this.searchModel.pricemax}
+  console.log('submitted');
+  console.log(this.searchModel.name, this.searchModel.bedmin, this.searchModel.bedmax, this.searchModel.pricemin, this.searchModel.pricemax);
+  this.router.navigate(['/filter', searchparams]);
 }
 
 ngOnInit() {

@@ -1,0 +1,40 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiserviceService } from '../service/apiservice.service';
+
+@Component({
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css']
+})
+export class FilterComponent implements OnInit {
+  searchparam: any;
+  filterdetails: any;
+  previous: any;
+  next: any;
+  count: any;
+  constructor(private actRoute: ActivatedRoute, private api: ApiserviceService) {
+    this.searchparam = this.actRoute.snapshot.params;
+  }
+  getFilterDetail = () => {
+    console.log('testingggg');
+    this.api.getfilterDetails().subscribe(
+      data => {
+        // console.log(this.countrydetaillsapi, 'comedylist');
+        this.filterdetails = data.results;
+        this.previous = data.previous;
+        this.next = data.next;
+        this.count = data.count;
+        console.log(this.filterdetails, this.previous, this.next, this.count, 'datttaa');
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  ngOnInit() {
+    console.log(this.searchparam, 'yeah yeah');
+    this.getFilterDetail();
+  }
+
+}

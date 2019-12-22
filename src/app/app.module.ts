@@ -10,12 +10,17 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FilterComponent } from './filter/filter.component';
 
 const appRoutes: Routes = [
 
   {
     path: 'index',
     component: IndexComponent,
+  },
+  {
+    path: 'filter',
+    component: FilterComponent,
   },
   { path: '',
     redirectTo: '/index',
@@ -27,7 +32,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
