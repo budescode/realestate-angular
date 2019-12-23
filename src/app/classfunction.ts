@@ -5,5 +5,6 @@ export class Classfunction {
     public pricemax: string,
     public bedmin: string,
     public bedmax: string,
+    public propertytype: any
 ) {}
 }

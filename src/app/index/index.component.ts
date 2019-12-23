@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Classfunction } from '../classfunction';
 import { ApiserviceService } from '../service/apiservice.service';
 import { Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-index',
@@ -10,11 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
+  // this is for  ng-multiselect-dropdown;
+  dropdownSettings: IDropdownSettings;
+  dropdownList = [];
+  selectedItems = [];
+  propertytype = [];
+  // this is for  ng-multiselect-dropdown;
   countrydetaillsapi = [];
   testlist = [];
   dis = false;
   search = '';
-  searchModel = new Classfunction(this.search, '', '', '', '');
+  searchModel = new Classfunction(this.search, '', '', '', '', '');
   realdata = [{name: 'DARWIN - NT'}, {name: 'BARTON - ACT'}, {name: 'PARAP - NT'}];
   countrydata = this.realdata;
   inputdata = '';
@@ -143,18 +150,57 @@ getCountryDetail = () => {
 }
 
 submitForm = () => {
-  const searchparams = {name: this.searchModel.name, bedmin: this.searchModel.bedmin, bedmax: this.searchModel.bedmax,
-  pricemin: this.searchModel.pricemin, pricemax: this.searchModel.pricemax}
-  console.log('submitted');
-  console.log(this.searchModel.name, this.searchModel.bedmin, this.searchModel.bedmax, this.searchModel.pricemin, this.searchModel.pricemax);
+  this.searchModel.propertytype = this.propertytype;
+  console.log('search model', this.searchModel.propertytype);
+  const searchparams = {name: this.searchModel.name.trim(), bedmin: this.searchModel.bedmin, bedmax: this.searchModel.bedmax,
+  pricemin: this.searchModel.pricemin, pricemax: this.searchModel.pricemax, propertytype: this.searchModel.propertytype};
+  // console.log('submitted', this.searchModel.propertytype, this.searchModel.name);
+  // console.log(this.searchModel.name, this.searchModel.bedmin, this.searchModel.bedmax,
+  //   this.searchModel.pricemin, this.searchModel.pricemax);
   this.router.navigate(['/filter', searchparams]);
 }
 
 ngOnInit() {
   this.getCountryDetail();
+  this.dropdownList = ['House', 'Apartment & Unit', 'Townhouse', 'Villa', 'Land', 'Acreage', 'Rural', 'Block Of Units', 'Retirement Living'
+  ];
+  this.selectedItems = [
+  ];
+  this.dropdownSettings = {
+    singleSelection: false,
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+}
+onItemSelect(item: any) {
+  console.log(item, this.propertytype);
+  // this.propertytype = item;
+  const selected1 = item;
+  if (this.propertytype.includes(item)) {
+    console.log('yeahhh');
+  } else {
+    console.log('nahhh');
+    this.propertytype.push(item);
+    this.searchModel.propertytype = this.propertytype;
+    console.log('this.propertytype', this.searchModel.propertytype);
+
+  }
+
+}
+onSelectAll(items: any) {
+  console.log(items);
+  this.propertytype = items;
+  this.searchModel.propertytype = this.propertytype;
+  console.log('this.propertytype', this.searchModel.propertytype);
+
+}
 }
 
 
-}
+
 
 

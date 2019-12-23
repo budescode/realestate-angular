@@ -11,6 +11,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FilterComponent } from './filter/filter.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 const appRoutes: Routes = [
 
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
     ),
     FormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

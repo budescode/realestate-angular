@@ -17,15 +17,16 @@ export class FilterComponent implements OnInit {
     this.searchparam = this.actRoute.snapshot.params;
   }
   getFilterDetail = () => {
-    console.log('testingggg');
-    this.api.getfilterDetails().subscribe(
+    // console.log('testingggg');
+    this.api.getfilterDetails(this.searchparam).subscribe(
       data => {
         // console.log(this.countrydetaillsapi, 'comedylist');
         this.filterdetails = data.results;
         this.previous = data.previous;
         this.next = data.next;
         this.count = data.count;
-        console.log(this.filterdetails, this.previous, this.next, this.count, 'datttaa');
+        // this.filterdetails, this.previous, this.next,
+        console.log(this.count, 'datttaacountt');
       },
       error => {
         console.log(error);
@@ -33,7 +34,7 @@ export class FilterComponent implements OnInit {
     );
   }
   ngOnInit() {
-    console.log(this.searchparam, 'yeah yeah');
+    // console.log(this.searchparam, 'yeah yeah');
     this.getFilterDetail();
   }
 
