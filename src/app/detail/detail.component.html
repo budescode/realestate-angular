@@ -1,0 +1,98 @@
+<html>
+  <head>
+
+
+ <style>
+  #more {display: none;}
+  .containershow {
+  font-size: 16px;
+  line-height: 16px;
+  height: 94px;
+  overflow: hidden;
+}
+
+ .show {
+  overflow: visible;
+  height: auto;
+}
+#map {
+    height: 100%;
+    width: 100%;
+   }
+  </style>
+</head>
+
+<!-- <h2>Read More Read Less Button</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel<span id="dots">...</span><span id="more">erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta.</span></p>
+<button onclick="myFunction()" id="myBtn">Read more</button> -->
+<div class="container-fluid">
+<div class='row'>
+
+  <div class='col-md-7' *ngFor = 'let test of posterdetails'>
+    <a class="nav-link" href="#" onclick="window.history.back();return false;"><i class='fa fa-arrow-left'></i> Back TO PROPERTY LIST <span class="sr-only">(current)</span></a>
+    <!-- A grey horizontal navbar that becomes vertical on small screens -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style='border-top: 1px solid lightgray; border-bottom: 1px solid lightgray; '>
+    <div id="navbarNavDropdown" class="navbar-collapse collapse">
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+
+      <p><h6 style='color:black'> {{test.street_number}}  {{test.street_name}}, {{test.suburb}} {{test.state}} </h6>
+    </li>
+    <!--<li class="nav-item">-->
+    <!--    <a class="nav-link" href="#"><i class='fa fa-globe'></i> Map</a>-->
+    <!--</li>-->
+
+    </ul>
+    <ul class="navbar-nav">
+
+    <li class="nav-item" >
+    <p> <h6 style='color:black'>$ {{test.Price}}</h6>
+    </li>
+
+    </ul>
+    </div>
+    </nav>
+    <img src='{{test.image}}' class='img-fluid' id='bg_image' width="800" height='600'>
+
+</div>
+
+<div class="col-md-5" *ngFor = 'let test of posterdetails'>
+  <br>
+  <hr>
+  <div class="alert alert-primary">
+    <strong>Property Features</strong>
+  </div>
+  <div style='font-size:17px;color:black'>
+    <a href='' style='margin-right: 60px;color:black'>Bedrooms <i class='fa fa-bed' style='font-size:20px'></i> {{test.Bedrooms}}</a>
+    <a href='' style='color:black'>Bathrooms <i class='fa fa-bath' style='font-size:20px'></i>  {{test.Bathrooms}} </a> <br>
+    <a href='' style='margin-right: 60px;color:black'>Car Spaces <i class='fa fa-car' style='font-size:20px'></i>   {{test.Car_spaces}} </a>
+    <a href='' style='color:black'>Landsize  <i class='fa fa-area-chart' style='font-size:20px'></i>   {{test.land_size}} </a> <br>
+    <a href=''style='color:black'>     {{test.Property_type}} </a>
+</div>
+
+<div class="alert alert-primary">
+  <strong>Description</strong>
+</div>
+
+<div class="container containershow" [class.show]="show">
+  <p style='font-size:17px;color:black'>{{test.description}}</p>
+</div> <br>
+<button class='btn btn-primary' (click)="show = !show">{{ show ? 'Show less': 'Show More' }}</button>
+<br>
+<div class="alert alert-primary">
+  <strong>Map View</strong>
+  </div>
+
+  <agm-map  [latitude]="latitude" [longitude]="longitude">
+    <agm-marker *ngFor="let data of details; let i = index" [latitude]="data.latitude" [longitude]="data.longitude"></agm-marker>
+  </agm-map>
+  <hr>
+
+</div>
+
+
+</div>
+
+</div>
+
+</html>

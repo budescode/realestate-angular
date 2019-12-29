@@ -13,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilterComponent } from './filter/filter.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { DetailComponent } from './detail/detail.component';
 
+import { AgmCoreModule } from '@agm/core';
 
 
 const appRoutes: Routes = [
@@ -30,6 +32,10 @@ const appRoutes: Routes = [
     redirectTo: '/index',
     pathMatch: 'full'
   },
+  {
+    path: 'detail/:id',
+    component: DetailComponent,
+  }
 
 ];
 
@@ -37,14 +43,15 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     IndexComponent,
-    FilterComponent
+    FilterComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(
     appRoutes,
-    { enableTracing: true } // <-- debugging purposes only
+    { enableTracing: true } // <-- debugging purposes only #AIzaSyBfZ86mdGX5E7o4PGSB7ct22axSb_JzVTY
     ),
     FormsModule,
     HttpClientModule,
@@ -52,8 +59,11 @@ const appRoutes: Routes = [
     NgxUiLoaderModule, // import NgxUiLoaderModule
     NgxUiLoaderRouterModule, // import NgxUiLoaderRouterModule. By default, it will show foreground loader.
     NgxUiLoaderHttpModule, // import NgxUiLoaderHttpModule. By default, it will show background loader.
-    NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
+    // NgxUiLoaderRouterModule.forRoot({ showForeground: true }),
     NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBfZ86mdGX5E7o4PGSB7ct22axSb_JzVTY'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

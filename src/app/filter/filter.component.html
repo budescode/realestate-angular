@@ -9,7 +9,7 @@
             <a class="nav-link" href="#"><i class='fa fa-list-alt'></i> List <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href=""><i class='fa fa-globe'></i> Map</a>
+            <a class="nav-link" (click)='mapSearch()'><i class='fa fa-globe'></i> Map</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal"><i class='fa fa-save'></i><span id='savesearchid'>Save Search</span></a>
@@ -113,8 +113,8 @@
     </div>
     <hr>
 
-    {{i.created | date}} <br> <br>
-    {{i.Property_type}} | ${{i.Price}}  |  <a href=''>See more</a>  <br>
+    {{i.created | date}}  <br> <br>
+    {{i.Property_type}} | ${{i.Price}}  |  <a [routerLink]="['/detail', i.id_user]">See more</a>  <br>
 
       <br>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../service/apiservice.service';
+import { Classfunction } from '../classfunction';
 
 @Component({
   selector: 'app-filter',
@@ -32,6 +33,11 @@ export class FilterComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  mapSearch = () => {
+    localStorage.setItem('url', 'this.dataSource.length');
+    console.log(localStorage.getItem('searchparams'), 'this is it ooh');
+    console.log('clicked');
   }
   ngOnInit() {
     // console.log(this.searchparam, 'yeah yeah');

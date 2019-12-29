@@ -13,9 +13,11 @@ export class ApiserviceService {
   pricemax: 1000000000000000;
   name = 'DARWIN-NT_PARAP-NT_BARTON-ACT';
   propertytype = 'any';
+  posterIdUser = '';
   countryDetailsUrl = 'https://anandrathi.pythonanywhere.com/adminapi/countrylistapi/';
   // filterUrl = 'http://anandrathi.pythonanywhere.com/indexapi/posterlistapi/';
   filterUrl = 'https://anandrathi.pythonanywhere.com/indexapi/posterlistapi/?pricemin='+ this.pricemin + '&name=' + this.name +'&pricemax=' + this.pricemax + '&bedmin=' + this.bedmin + '&bedmax=' + this.bedmax + '&propertytype=' + this.propertytype;
+  detailUrl = 'https://anandrathi.pythonanywhere.com/indexapi/detail?id=' + this.posterIdUser;
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }
@@ -98,7 +100,12 @@ export class ApiserviceService {
        console.log('pricemaxpricemax', datas.pricemax, this.pricemax);
      }
      //console.log('filterurl', this.filterUrl, this.bedmax, this.pricemin, this.pricemax);
-     console.log('these ate the data', datas.propertytype, datas, 'yeahh', this.filterUrl);
+     localStorage.setItem('searchparams', this.filterUrl);
+     console.log('these ate the data', datas.propertytype, datas, 'yeahh', this.filterUrl, 'Ive set it ooh');
      return this.http.get(this.filterUrl, {headers: this.httpHeaders});
+   }
+   getposterDetails(id): Observable<any> {
+    this.detailUrl = 'https://anandrathi.pythonanywhere.com/indexapi/detail?id=' + id;
+    return this.http.get(this.detailUrl, {headers: this.httpHeaders});
    }
 }
