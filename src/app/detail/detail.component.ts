@@ -11,8 +11,8 @@ import { ApiserviceService } from '../service/apiservice.service';
 export class DetailComponent implements OnInit {
   details = [{longitude: 7.809007, latitude: 51.678418}, {longitude: 9.809007, latitude: 60.678418},
      {longitude: 8.809007, latitude: 55.678418}];
-  latitude = 55.678418;
-  longitude = 8.809007;
+  latitude = 0;
+  longitude = 0;
   location: Location;
   lastindex: number;
   posterId: string;
@@ -33,8 +33,8 @@ export class DetailComponent implements OnInit {
       data => {
         // console.log(this.countrydetaillsapi, 'comedylist');
         this.posterdetails = data.results;
-        // this.longitude = Number(data.results[0].longitude);
-        // this.latitude = Number(data.results[0].latitude);
+        this.longitude = Number(data.results[0].longitude);
+        this.latitude = Number(data.results[0].latitude);
         console.log('datttaa', data.results[0].longitude, data.results[0].latitude);
       },
       error => {

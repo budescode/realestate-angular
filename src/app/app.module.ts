@@ -16,6 +16,7 @@ import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } fro
 import { DetailComponent } from './detail/detail.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { MapsearchComponent } from './mapsearch/mapsearch.component';
 
 
 const appRoutes: Routes = [
@@ -35,6 +36,10 @@ const appRoutes: Routes = [
   {
     path: 'detail/:id',
     component: DetailComponent,
+  },
+  {
+    path: 'mapsearch',
+    component: MapsearchComponent,
   }
 
 ];
@@ -44,7 +49,8 @@ const appRoutes: Routes = [
     AppComponent,
     IndexComponent,
     FilterComponent,
-    DetailComponent
+    DetailComponent,
+    MapsearchComponent
   ],
   imports: [
     BrowserModule,

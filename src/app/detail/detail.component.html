@@ -84,7 +84,7 @@
   </div>
 
   <agm-map  [latitude]="latitude" [longitude]="longitude">
-    <agm-marker *ngFor="let data of details; let i = index" [latitude]="data.latitude" [longitude]="data.longitude"></agm-marker>
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
   </agm-map>
   <hr>
 

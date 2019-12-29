@@ -108,4 +108,7 @@ export class ApiserviceService {
     this.detailUrl = 'https://anandrathi.pythonanywhere.com/indexapi/detail?id=' + id;
     return this.http.get(this.detailUrl, {headers: this.httpHeaders});
    }
+   getmapSearch(url): Observable<any> {
+    return this.http.get(url, {headers: this.httpHeaders});
+   }
 }

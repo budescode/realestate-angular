@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../service/apiservice.service';
 import { Classfunction } from '../classfunction';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filter',
@@ -14,7 +15,7 @@ export class FilterComponent implements OnInit {
   previous: any;
   next: any;
   count: any;
-  constructor(private actRoute: ActivatedRoute, private api: ApiserviceService) {
+  constructor(private actRoute: ActivatedRoute, private api: ApiserviceService, private router: Router) {
     this.searchparam = this.actRoute.snapshot.params;
   }
   getFilterDetail = () => {
@@ -36,8 +37,8 @@ export class FilterComponent implements OnInit {
   }
   mapSearch = () => {
     localStorage.setItem('url', 'this.dataSource.length');
-    console.log(localStorage.getItem('searchparams'), 'this is it ooh');
-    console.log('clicked');
+    this.router.navigate(['/mapsearch']);
+    console.log('ended');
   }
   ngOnInit() {
     // console.log(this.searchparam, 'yeah yeah');
