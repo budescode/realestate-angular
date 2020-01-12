@@ -1,0 +1,463 @@
+<div class="container-fluid">
+  <form #userForm='ngForm' (ngSubmit)='onSubmit()' enctype="multipart/form-data">
+  <div class="row">
+      <div class="col-md-12 mx-auto">
+        <h3 style="text-align: center;">Address Details</h3>
+        <div class="form-group row">
+
+          <div class="col-sm-4">
+            <label for="sel1">Select State:</label>
+            <select class="form-control" id="sel1" (change)="onstateChange()" [(ngModel)]='sellModel.state' name='state'>
+              <option *ngFor='let i of statelist'> {{ i }} </option>
+            </select>
+          </div>
+
+          <div class="col-sm-4">
+            <label for="selectpostcode">Select Suburb:</label>
+            <select class="form-control" id="selectpostcode" [(ngModel)]='sellModel.suburb' name="suburb" required>
+                 <option *ngFor='let i of countrydetaillsapi'>{{ i.suburb }}</option>
+             </select>
+          </div>
+
+          <div class="col-sm-4">
+            <label for="selectpostcode">Select Suburb:</label>
+            <select class="form-control" id="selectpostcode" [(ngModel)]='sellModel.postcode' name="postcode" required>
+                 <option *ngFor='let i of countrydetaillsapi'>{{ i.postcode }}</option>
+             </select>
+          </div>
+
+        </div>
+      </div>
+  </div>
+<!-- end row -->
+<!-- start row -->
+  <div class="form-group row">
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="usr">Unit:</label>
+        <input type="text" class="form-control" id="usr" [(ngModel)]='sellModel.unit' name="unit" >
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="usr">Street Number:</label>
+        <input type="text" class="form-control" id="usr" [(ngModel)]='sellModel.street_number' name="street_number" >
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="usr">Street Name:</label>
+        <input type="text" class="form-control" [(ngModel)]='sellModel.street_name' name="street_name" >
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="usr">Land Size:</label>
+        <input type="text" class="form-control" [(ngModel)]='sellModel.land_size' name="land_size" >
+      </div>
+    </div>
+
+</div>
+<!-- end row -->
+
+<!-- start row -->
+<div class="form-group row">
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Price:</label>
+      <input type="text" class="form-control" [(ngModel)]='sellModel.Price' name="Price" >
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Property Type:</label>
+      <select class="form-control"  [(ngModel)]='sellModel.Property_type' name="Property_type" >
+        <option> House </option>
+        <option> Apartment & Unit </option>
+        <option> Townhouse </option>
+        <option> Villa </option>
+        <option> Land </option>
+        <option> Acreage </option>
+        <option> Rural </option>
+        <option> Block Of Units </option>
+        <option> Retirement Living </option>
+
+    </select>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Bedrooms:</label>
+      <input type="text" class="form-control" [(ngModel)]='sellModel.Bedrooms' name="Bedrooms">
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Bathrooms:</label>
+      <input type="text" class="form-control" [(ngModel)]='sellModel.Bathrooms' name="Bathrooms">
+    </div>
+  </div>
+
+</div>
+<!-- end row -->
+
+<!-- start row -->
+<div class="form-group row">
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Car Spaces:</label>
+      <input type="text" class="form-control" [(ngModel)]='sellModel.Car_spaces' name="Car_spaces" >
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">New Or Established:</label>
+      <select class="form-control"  [(ngModel)]='sellModel.new_or_established' name="new_or_established" >
+        <option> New </option>
+        <option> Established </option>
+    </select>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Image:</label>
+      <input type="file" class="form-control" [(ngModel)]='sellModel.image' name="image">
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="usr">Plan:</label>
+      <input type="file" class="form-control" [(ngModel)]='sellModel.plan' name="plan">
+    </div>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="comment">Description:</label>
+      <textarea class="form-control" rows="5" [(ngModel)]='sellModel.description' name="description"></textarea>
+    </div>
+  </div>
+
+</div>
+<!-- end row -->
+
+<h4 style="text-align: center;">Additional Images(Optional) </h4>
+
+<div class="form-group row">
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr">
+  </div>
+
+</div>
+
+<hr>
+                <h4 style="text-align: center;"> Additional Informations </h4>
+
+<div class="form-group row">
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Swimmimg Pool
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Garage
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Balcony
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Outdoor Area
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Undercover Parking
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Fully Fenced
+  </label>
+</div>
+</div>
+</div>
+</div>
+<div class="form-group row">
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Outdoor Spa
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Tennis Court
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Ensuite
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">DishWasher
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Study
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Alarm System
+  </label>
+</div>
+</div>
+</div>
+</div>
+
+<div class="form-group row">
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Broadband
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Floorboards
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Gym
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Rumpus Room
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Workshop
+  </label>
+</div>
+</div>
+</div>
+
+<div class="col-sm-2">
+<div class="form-group">
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="checkbox" class="form-check-input" value="">Air Conditioning
+  </label>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-sm-2">
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value="">Solar Panels
+    </label>
+  </div>
+  </div>
+  </div>
+
+  <div class="col-sm-2">
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value="">Heating
+    </label>
+  </div>
+  </div>
+  </div>
+
+  <div class="col-sm-2">
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value="">High Energy Efficiency
+    </label>
+  </div>
+  </div>
+  </div>
+
+  <div class="col-sm-2">
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value="">Solar Hot Water
+    </label>
+  </div>
+  </div>
+  </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6"></div>
+    <button type="Submit" class="btn btn-primary btn-block">Submit</button>
+  </div>
+
+
+<hr>
+</form>
+<div>

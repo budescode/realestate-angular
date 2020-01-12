@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form #userForm='ngForm' (ngSubmit)='onSubmit()'>
+        <div class="alert alert-secondary">
+          Sign Up Your Account
+        </div>
+        <label>Username</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+               <i class='fa fa-user'></i>
+            </div>
+          </div>
+          <input type="text" [(ngModel)]='signUpModel.username' class="form-control" placeholder="Username" name='username'>
+        </div>
+        <label>Email</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+               <i class='fa fa-envelope'></i>
+            </div>
+          </div>
+          <input type="email" [(ngModel)]='signUpModel.email' class="form-control" placeholder="Email" name='email'>
+        </div>
+        <label>Password </label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+               <i class='fa fa-key'></i>
+            </div>
+          </div>
+          <input type="password" [(ngModel)]='signUpModel.password' class="form-control" name='password'>
+        </div>
+        <button type="submit" class='btn btn-block btn-danger'>Register</button>
+</form>
+    </div>
+  </div>
+</div>

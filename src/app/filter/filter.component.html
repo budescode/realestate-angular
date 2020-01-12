@@ -1,4 +1,22 @@
-<div class='container-fluid'>
+<style>
+  #more {display: none;}
+  .containershow {
+  font-size: 16px;
+  line-height: 16px;
+  height: 94px;
+  overflow: hidden;
+}
+
+ .show {
+  overflow: visible;
+  height: auto;
+}
+#map {
+    height: 100%;
+    width: 100%;
+   }
+  </style>
+<div class='container'>
 <div class="row">
   <div class='col-md-8'>
     <!-- A grey horizontal navbar that becomes vertical on small screens -->
@@ -17,7 +35,7 @@
 
 
     </ul>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" style="margin-top: 24px">
 
         <li class="nav-item">
             <div class="form-group">
@@ -87,8 +105,8 @@
 <hr>
 
 <hr>
-
-<div class="card" style='margin-bottom:20px;' *ngFor='let i of filterdetails'>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<div class="card" style='margin-bottom:20px;' *ngFor='let i of filterdetails | paginate: { itemsPerPage: 30, currentPage: p }'>
 <div class="card-body">
     <h4 class="card-title"> <p>{{i.street_number}}, {{i.street_name}} {{i.state}} {{i.suburb}}, {{i.postcode}}</p></h4>
     <p class="card-text">
@@ -130,6 +148,396 @@
 
 
 </div>
-<!--col-md-8-->
+<!--end col-md-8-->
+<!-- start col-md-4 -->
+<div class='col-md-4'>
+<div class="form-group row">
+<div class='col-md-12'>
+<input type="text" name="filterlist" id="filterlist" class="form-control" value="">
 </div>
+
+<!-- start pricemin -->
+<div class="col-sm-6">
+  <label for="pricemin"><small>Price (Min):</small></label>
+      <select class="custom-select custom-select-sm" id="pricemin" name="pricemin" >
+      <option>Any </option>
+      <option>$50,000 </option>
+      <option>$75,000</option>
+      <option>$100,000</option>
+      <option>$125,000</option>
+      <option>$150,000</option>
+      <option>$175,000</option>
+      <option>$200,000</option>
+      <option>$225,000</option>
+      <option>$250,000</option>
+      <option>$275,000</option>
+      <option>$300,000</option>
+      <option>$325,000</option>
+      <option>$350,000</option>
+      <option>$350,000</option>
+      <option>$350,000</option>
+      <option>$375,000</option>
+      <option>$400,000</option>
+      <option>$425,000</option>
+      <option>$450,000</option>
+      <option>$475,000</option>
+      <option>$500,000</option>
+      <option>$550,000</option>
+      <option>$600,000</option>
+      <option>$650,000</option>
+      <option>$700,000</option>
+      <option>$750,000</option>
+      <option>$800,000</option>
+      <option>$850,000</option>
+      <option>$900,000</option>
+      <option>$950,000</option>
+      <option>$1,000,000</option>
+      <option>$1,100,000</option>
+      <option>$1,200,000</option>
+      <option>$1,300,000</option>
+      <option>$1,400,000</option>
+      <option>$1,500,000</option>
+      <option>$1,600,000</option>
+      <option>$1,700,000</option>
+      <option>$1,800,000</option>
+      <option>$1,900,000</option>
+      <option>$2,000,000</option>
+      <option>$2,250,000</option>
+      <option>$2,500,000</option>
+      <option>$2,750,000</option>
+      <option>$3,000,000</option>
+      <option>$3,500,000</option>
+      <option>$4,000,000</option>
+      <option>$4,500,000</option>
+      <option>$5,000,000 </option>
+      <option>$7,000,000</option>
+      <option>$8,000,000</option>
+      <option>$9,000,000</option>
+      <option>$10,000,000</option>
+      <option>$12,000,000</option>
+      <option>$15,000,000</option>
+      </select>
+  </div>
+<!-- end pricemin -->
+
+<!-- start pricemax -->
+<div class="col-sm-6">
+  <label for="pricemax"><small>Price (Max):</small></label>
+  <select class="custom-select custom-select-sm" id="pricemax" name="pricemax" >
+  <option>Any </option>
+  <option>$50,000 </option>
+  <option>$75,000</option>
+  <option>$100,000</option>
+  <option>$125,000</option>
+  <option>$150,000</option>
+  <option>$175,000</option>
+  <option>$200,000</option>
+  <option>$225,000</option>
+  <option>$250,000</option>
+  <option>$275,000</option>
+  <option>$300,000</option>
+  <option>$325,000</option>
+  <option>$350,000</option>
+  <option>$350,000</option>
+  <option>$350,000</option>
+  <option>$375,000</option>
+  <option>$400,000</option>
+  <option>$425,000</option>
+  <option>$450,000</option>
+  <option>$475,000</option>
+  <option>$500,000</option>
+  <option>$550,000</option>
+  <option>$600,000</option>
+  <option>$650,000</option>
+  <option>$700,000</option>
+  <option>$750,000</option>
+  <option>$800,000</option>
+  <option>$850,000</option>
+  <option>$900,000</option>
+  <option>$950,000</option>
+  <option>$1,000,000</option>
+  <option>$1,100,000</option>
+  <option>$1,200,000</option>
+  <option>$1,300,000</option>
+  <option>$1,400,000</option>
+  <option>$1,500,000</option>
+  <option>$1,600,000</option>
+  <option>$1,700,000</option>
+  <option>$1,800,000</option>
+  <option>$1,900,000</option>
+  <option>$2,000,000</option>
+  <option>$2,250,000</option>
+  <option>$2,500,000</option>
+  <option>$2,750,000</option>
+  <option>$3,000,000</option>
+  <option>$3,500,000</option>
+  <option>$4,000,000</option>
+  <option>$4,500,000</option>
+  <option>$5,000,000 </option>
+  <option>$7,000,000</option>
+  <option>$8,000,000</option>
+  <option>$9,000,000</option>
+  <option>$10,000,000</option>
+  <option>$12,000,000</option>
+  <option>$15,000,000</option>
+  </select>
+  </div>
+  <!--end pricemax-->
+
+  <!-- stare bedmin -->
+  <div class='col-md-6'>
+    <label for="bedmin"> <small>Bed (Min):</small></label>
+    <select class="custom-select custom-select-sm" id="bedmin" name="Bed(min)" >
+    <option>Any</option>
+    <option>Studio</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+  </div>
+<!-- end bedmin -->
+<!-- startbedmax -->
+   <div class='col-md-6'>
+    <label for="bedmax"> <small>Bed (Max):</small></label>
+    <select class="custom-select custom-select-sm" id="bedmax" name="Bed(max)" >
+    <option value='Any'>Any</option>
+    <option value='Studio'>Studio</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+    </div>
+  <!-- endbedmax -->
+  <!-- start propertytype -->
+  <div class="col-md-12">
+    <br>
+    <ng-multiselect-dropdown
+    name="propertytype"
+    [placeholder]="'Property Type'"
+    [data]="dropdownList"
+    [(ngModel)]="selectedItems"
+    [settings]="dropdownSettings"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)">
+  </ng-multiselect-dropdown>
+  </div>
+  <!-- end propertytype -->
+  <!-- startbathrooms -->
+  <div class='col-md-6'>
+    <label for=""> <small>Bathrooms:</small></label>
+    <select class="custom-select custom-select-sm" id="" name="" >
+    <option>Any</option>
+    <option>Studio</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+    </div>
+  <!-- end bathrooms -->
+  <!-- start car spaces -->
+  <div class='col-md-6'>
+    <label for=""> <small>Car Spaces:</small></label>
+    <select class="custom-select custom-select-sm" id="" name="" >
+    <option>Any</option>
+    <option>Studio</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    </select>
+    </div>
+    <!-- //end car spaces -->
+    <!-- start min land size -->
+    <div class='col-md-6'>
+    <label for=""> <small>Min land size (m2):</small></label>
+    <select class="custom-select custom-select-sm" id="bedmin" name="" >
+    <option>Any</option>
+    <option>Studio</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    </select>
+    </div>
+<!-- end start min land size -->
+<!-- start new or established -->
+    <div class='col-md-6'>
+    <label for=""> <small>New or established:</small></label>
+    <select class="custom-select custom-select-sm" id="" name="" >
+    <option value='Any'>Any</option>
+    <option value='New'>New</option>
+    <option value="Established">Established</option>
+    </select>
+    </div>
+    <!-- end new or established -->
 </div>
+<div class='col-md-12'><br>
+  <b style="text-align: center;">Outdoor Features</b>
+  <hr>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Swimming_pool' onclick=changeFilter(this)> Swimming pool
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Balcony' onclick=changeFilter(this)> Balcony
+    </label>
+  </div>
+  <hr>
+<div class="form-check-inline">
+    <label class="form-check-label" for="check1">
+      <input type="checkbox" class="form-check-input" id="check1"  value="Garage" onclick=changeFilter(this)> Garage
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label" for="check2">
+      <input type="checkbox" class="form-check-input" id="check2" value="Outdoor_area" onclick=changeFilter(this)> Outdoor area
+    </label>
+  </div>
+
+  <hr>
+  <div class="form-check-inline">
+    <label class="form-check-label" for="check1">
+      <input type="checkbox" class="form-check-input" id="check1"  value="Fully_fenced" onclick=changeFilter(this) > Fully fenced
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label" for="check2">
+      <input type="checkbox" class="form-check-input" id="check2" value="Shed" onclick=changeFilter(this)> Shed
+    </label>
+  </div>
+  <hr>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Outdoor_spa' onclick=changeFilter(this)> Outdoor spa
+    </label>
+  </div>
+<div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Tennis_court' onclick=changeFilter(this)> Tennis court
+    </label>
+  </div>
+  <hr>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Undercover_parking' onclick=changeFilter(this)> Undercover parking
+    </label>
+  </div>
+  <div class='col-md-12'><br>
+    <b style="text-align: center;">Indoor Features</b>
+    <hr>
+    </div>
+    <div class="form-check-inline">
+      <label class="form-check-label" for="check1">
+      <input type="checkbox" class="form-check-input" value="Ensuite" onclick=changeFilter(this) > Ensuite
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label" for="check2">
+      <input type="checkbox" class="form-check-input"  value="DishWasher" onclick=changeFilter(this)> Dishwasher
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Built_in_robes' onclick=changeFilter(this)> Built in robes
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Study' onclick=changeFilter(this)> Study
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Alarm_system' onclick=changeFilter(this)> Alarm system
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Broadband' onclick=changeFilter(this)> Broadband
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Floorboards' onclick=changeFilter(this)> Floorboards
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Gym' onclick=changeFilter(this)> Gym
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Rumpus_room' onclick=changeFilter(this)> Rumpus room
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Workshop' onclick=changeFilter(this)> Workshop
+      </label>
+      </div>
+      <hr>
+      <div class='col-md-12'><br>
+      <b style="text-align: center;">Climate control & energy</b>
+      <hr>
+      </div>
+
+
+      <div class="form-check-inline">
+      <label class="form-check-label" for="check1">
+      <input type="checkbox" class="form-check-input" value="Air_conditioning" onclick=changeFilter(this) > Air conditioning
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label" for="check2">
+      <input type="checkbox" class="form-check-input"  value="Solar_panels" onclick=changeFilter(this)> Solar panels
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Heating' onclick=changeFilter(this)> Heating
+      </label>
+      </div>
+
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Water_tank' onclick=changeFilter(this)> Water tank
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='Solar_hot_water' onclick=changeFilter(this)> Solar hot water
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value='High_energy_efficiency' onclick=changeFilter(this)> High energy efficiency
+      </label>
+      </div>
+      <hr>
+
+<!-- end form group row -->
+</div>
+<!-- end col-md-4 -->
+
+</div>
+<!-- // end row -->
+</div>
+<!-- end container -->

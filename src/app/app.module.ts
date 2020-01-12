@@ -17,13 +17,38 @@ import { DetailComponent } from './detail/detail.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { MapsearchComponent } from './mapsearch/mapsearch.component';
+import { LoginComponent } from './login/login.component';
 
+import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { SellComponent } from './sell/sell.component';
+import { LogoutComponent } from './logout/logout.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
 
   {
     path: 'index',
     component: IndexComponent,
+  },
+  {
+    path: 'sell',
+    component: SellComponent,
+  },
+  {
+    path: 'signin',
+    component: SigninComponent,
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'filter',
@@ -44,13 +69,30 @@ const appRoutes: Routes = [
 
 ];
 
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('1415669241944851')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     FilterComponent,
     DetailComponent,
-    MapsearchComponent
+    MapsearchComponent,
+    LoginComponent,
+    SigninComponent,
+    SignupComponent,
+    SellComponent,
+    LogoutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -70,8 +112,16 @@ const appRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBfZ86mdGX5E7o4PGSB7ct22axSb_JzVTY'
     }),
+    SocialLoginModule, // social authentication
+    NgxPaginationModule,
+    NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

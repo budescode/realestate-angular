@@ -1,37 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
-import { Router } from '@angular/router';
-import { Signin } from './class/signin';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
-import { ApiserviceService } from './service/apiservice.service';
-// console.log(`jQuery version: ${$.fn.jquery}`);
-// angularx-social-login https://www.djamware.com/post/5d4628d5721e1ce9d7dc95b0/angular-8-tutorial-facebook-login
-// https://www.djamware.com/post/5d4628d5721e1ce9d7dc95b0/angular-8-tutorial-facebook-login
+import { ApiserviceService } from '../service/apiservice.service';
+import { Router } from '@angular/router';
+import { Signin } from '../class/signin';
+import { Signup } from '../class/signup';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-// tslint:disable-next-line: no-unused-expression
-export class AppComponent implements OnInit {
-  signInModel = new Signin('budescode', 'bossess1');
-  title = 'project';
-  details = [{longitude: 51.678418, latitude: 7.809007}];
-  latitude = 51.678418;
-  longitude = 7.809007;
-  user: SocialUser;
-  loggedIn: boolean;
-  apikey = 'null';
+export class NavbarComponent implements OnInit {
+  signInModel = new Signin('', '');
+  signUpModel = new Signup('', '', '');
+  @Input() apikey = 'null';
+  check = '';
   closeResult: string;
   modalOptions: NgbModalOptions;
-
-  constructor(private authService: AuthService, private api: ApiserviceService, private router: Router,  private modalService: NgbModal) {
+  constructor(private api: ApiserviceService, private router: Router,  private modalService: NgbModal) {
     this.modalOptions = {
       backdrop: 'static',
       backdropClass: 'customBackdrop'
     };
   }
-  open(content) {
+  registerUser = () => {
+    console.log(this.signUpModel);
+    this.api.signup(this.signUpModel).subscribe(
+      data => {console.log('Success!'),
+          this.check = 'signin';
+               this.signUpModel = new Signup('', '', '');
+      //  this.router.navigate(['/signin'])),
+    },
+      // tslint:disable-next-line: no-string-literal
+      error => console.log('oops', error.error)
+            // erro => console.error('Error', error)
+    );
+  }
+  open(content, check) {
+    this.check = check;
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -47,16 +53,14 @@ export class AppComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
-  onSubmit(): void {
-    console.log(this.signInModel);
+  loginUser(): void {
     this.api.signin(this.signInModel).subscribe(
       data => {
         localStorage.setItem('apikey', data.key);
         const key = localStorage.getItem('apikey');
-        console.log('Success!', 'logged in', key);
+        this.apikey = data.key;
+        this.modalService.dismissAll();
+        this.signInModel = new Signin('', '');
         this.router.navigate(['/']);
       },
       // tslint:disable-next-line: no-string-literal
@@ -70,7 +74,6 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/']);
     // this.authService.signOut();
   }
-
   ngOnInit() {
     const key = localStorage.getItem('apikey');
     // console.log('just enteredd againnn', key);
@@ -88,4 +91,3 @@ export class AppComponent implements OnInit {
   }
 
 }
-

@@ -21,10 +21,11 @@ export class IndexComponent implements OnInit {
   testlist = [];
   dis = false;
   search = '';
-  searchModel = new Classfunction(this.search, '', '', '', '', '');
+  searchModel = new Classfunction(this.search, 'Any', 'Any', '', '', '');
   realdata = [{name: 'DARWIN - NT'}, {name: 'BARTON - ACT'}, {name: 'PARAP - NT'}];
   countrydata = this.realdata;
   inputdata = '';
+  apikey = null;
   constructor(private api: ApiserviceService, private router: Router) { }
 
 
@@ -134,14 +135,31 @@ filterCountryDetails = () => {
 
 }
 
+// this function is used to remove duplicates
+getUnique(arr, comp) {
+
+  const unique = arr
+       .map(e => e[comp])
+
+     // store the keys of the unique objects
+    .map((e, i, final) => final.indexOf(e) === i && i)
+
+    // eliminate the dead keys & store unique objects
+    .filter(e => arr[e]).map(e => arr[e]);
+
+  return unique;
+}
+// this function is used to get the country details from api
 getCountryDetail = () => {
-  console.log('testingggg');
+  // console.log('testingggg');
   this.api.getcountryDetails().subscribe(
     data => {
       // console.log(this.countrydetaillsapi, 'comedylist');
-      this.countrydetaillsapi = data;
+      const unique = this.getUnique(data, 'postcode');
+      this.countrydetaillsapi = unique;
       this.testlist = data;
       console.log(this.countrydetaillsapi, 'datttaa');
+      console.log(data, 'originalll');
     },
     error => {
       console.log(error);
@@ -161,6 +179,14 @@ submitForm = () => {
 }
 
 ngOnInit() {
+  const key = localStorage.getItem('apikey');
+  // console.log('just enteredd', key);
+  if (key === null || key === '') {
+    this.apikey = null;
+  } else {
+    this.apikey = key;
+    console.log(this.apikey, 'indexxxxkeyyyy');
+  }
   this.getCountryDetail();
   this.dropdownList = ['House', 'Apartment & Unit', 'Townhouse', 'Villa', 'Land', 'Acreage', 'Rural', 'Block Of Units', 'Retirement Living'
   ];
