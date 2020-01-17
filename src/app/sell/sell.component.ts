@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sell } from '../class/sell';
 import { ApiserviceService } from '../service/apiservice.service';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-sell',
@@ -18,7 +19,10 @@ export class SellComponent implements OnInit {
   statelist = ['NSW', 'QLD', 'SA', 'TAS', 'VIC', 'WA', 'ACT', 'NT'];
   postcode = ['1001', '1002'];
   countrydetaillsapi = [];
-  constructor(private api: ApiserviceService, private router: Router) { }
+  image: File = null;
+  plan: File = null;
+  form = new FormData();
+  constructor(private api: ApiserviceService, private router: Router, private http: HttpClient) { }
 
   // this function is used to remove duplicates
   getUnique(arr, comp) {
@@ -55,20 +59,52 @@ export class SellComponent implements OnInit {
     this.getCountryDetail(this.sellModel.state);
     console.log('yeahh', this.sellModel.state );
   }
+  onFileSelected(event, formname) {
+    // const image = event.target.files[0];
+    this.form.append(formname, event.target.files[0], event.target.files[0].name);
+
+   }
+  //  onFileSelected1(event, data) {
+  //   // const image = event.target.files[0];
+  //   console.log(event.target.files[0], event.target.files[0].name);
+  //   this.form.append('plan', event.target.files[0], event.target.files[0].name);
+  //  }
   onSubmit() {
-    console.log(this.sellModel, 'submitted');
-    this.api.sell(this.sellModel).subscribe(
-      data => {
-        localStorage.setItem('apikey', data.key);
-        const key = localStorage.getItem('apikey');
-        // this.apikey = data.key;
-        console.log('Success!', 'logged in', key);
-        this.router.navigate(['/']);
-      },
-      // tslint:disable-next-line: no-string-literal
-      error => console.log('oops', error.error)
-            // erro => console.error('Error', error)
-    );
+
+    // console.log(this.sellModel, 'submitted', form);
+    for (const [key, value] of Object.entries(this.sellModel)) {
+      if (key.includes('image') || key.includes('plan')) {
+      //   if (value !== null || value !== '') {
+      //   this.form.append('image', key, value);
+      //   console.log('yeah its a file');
+      // }
+      } else {
+        this.form.append(key, value);
+      }
+      console.log(key, value, 'yeah');
+    }
+    console.log(this.form, 'formmm');
+    this.http.post('http://127.0.0.1:8000/indexapi/postercreate/', this.form,
+     {headers: new HttpHeaders({Authorization: 'Token b9c43a76d8e68e995decb6f7e80546cf475fe844'})}).subscribe(data => {
+      // this.apikey = data.key;
+      console.log('Success!');
+    },
+    // tslint:disable-next-line: no-string-literal
+    error => console.log('oops', error.error)
+          // erro => console.error('Error', error)
+  );
+    // this.api.sell(this.sellModel).subscribe(
+    //   data => {
+    //     localStorage.setItem('apikey', data.key);
+    //     const key = localStorage.getItem('apikey');
+    //     // this.apikey = data.key;
+    //     console.log('Success!', 'logged in', key);
+    //     this.router.navigate(['/']);
+    //   },
+    //   // tslint:disable-next-line: no-string-literal
+    //   error => console.log('oops', error.error)
+    //         // erro => console.error('Error', error)
+    // );
   }
   ngOnInit() {
   }

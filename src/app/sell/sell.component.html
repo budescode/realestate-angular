@@ -126,13 +126,13 @@
   <div class="col-sm-3">
     <div class="form-group">
       <label for="usr">Image:</label>
-      <input type="file" class="form-control" [(ngModel)]='sellModel.image' name="image">
+      <input type="file" (change)='onFileSelected($event, "image")' class="form-control" name="image">
     </div>
   </div>
   <div class="col-sm-3">
     <div class="form-group">
       <label for="usr">Plan:</label>
-      <input type="file" class="form-control" [(ngModel)]='sellModel.plan' name="plan">
+      <input type="file" (change)='onFileSelected($event, "plan")' class="form-control" name="plan">
     </div>
   </div>
 
@@ -150,7 +150,7 @@
 
 <div class="form-group row">
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image1")'>
   </div>
   <div class="col-sm-3">
     <input type="file" class="form-control" id="usr">
@@ -229,7 +229,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Swimmimg Pool
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Swimming_pool' name='Swimming_pool'>Swimmimg Pool
   </label>
 </div>
 </div>
@@ -239,7 +239,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Garage
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Garage' name='Garage'>Garage
   </label>
 </div>
 </div>

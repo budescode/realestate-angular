@@ -34,9 +34,10 @@ export class ApiserviceService {
     return this.http.post<any>(this.signinUrl, login);
     }
   sell(sell: Sell) {
+      let form = new FormData();
       const key = localStorage.getItem('apikey');
       this.apikey = key;
-      console.log('keyy', this.apikey);
+      console.log('keyy', Sell);
       return this.http.post<any>(this.sellUrl, sell,
         {headers: new HttpHeaders({Authorization: 'Token b9c43a76d8e68e995decb6f7e80546cf475fe844'})});
    }
