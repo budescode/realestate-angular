@@ -106,7 +106,7 @@
 
 <hr>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
-<div class="card" style='margin-bottom:20px;' *ngFor='let i of filterdetails | paginate: { itemsPerPage: 30, currentPage: p }'>
+<div class="card" style='margin-bottom:20px;' *ngFor='let i of filterdetails1 | paginate: { itemsPerPage: 30, currentPage: p }'>
 <div class="card-body">
     <h4 class="card-title"> <p>{{i.street_number}}, {{i.street_name}} {{i.state}} {{i.suburb}}, {{i.postcode}}</p></h4>
     <p class="card-text">
@@ -159,7 +159,7 @@
 <!-- start pricemin -->
 <div class="col-sm-6">
   <label for="pricemin"><small>Price (Min):</small></label>
-      <select class="custom-select custom-select-sm" id="pricemin" name="pricemin" >
+      <select class="custom-select custom-select-sm" name="pricemin" [(ngModel)]='searchModel.pricemin'(change)='pricemin()'>
       <option>Any </option>
       <option>$50,000 </option>
       <option>$75,000</option>
@@ -223,7 +223,7 @@
 <!-- start pricemax -->
 <div class="col-sm-6">
   <label for="pricemax"><small>Price (Max):</small></label>
-  <select class="custom-select custom-select-sm" id="pricemax" name="pricemax" >
+  <select class="custom-select custom-select-sm" id="pricemax" name="pricemax" [(ngModel)]='searchModel.pricemax'(change)='pricemax()'>
   <option>Any </option>
   <option>$50,000 </option>
   <option>$75,000</option>
@@ -287,7 +287,7 @@
   <!-- stare bedmin -->
   <div class='col-md-6'>
     <label for="bedmin"> <small>Bed (Min):</small></label>
-    <select class="custom-select custom-select-sm" id="bedmin" name="Bed(min)" >
+    <select class="custom-select custom-select-sm" name="bedmin" [(ngModel)]='searchModel.bedmin'(change)='bedmin()' >
     <option>Any</option>
     <option>Studio</option>
     <option value="1">1</option>
@@ -301,7 +301,7 @@
 <!-- startbedmax -->
    <div class='col-md-6'>
     <label for="bedmax"> <small>Bed (Max):</small></label>
-    <select class="custom-select custom-select-sm" id="bedmax" name="Bed(max)" >
+    <select class="custom-select custom-select-sm" name="bedmax" [(ngModel)]='searchModel.bedmax' (change)='bedmax()'>
     <option value='Any'>Any</option>
     <option value='Studio'>Studio</option>
     <option value="1">1</option>

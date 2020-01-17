@@ -150,73 +150,73 @@
 
 <div class="form-group row">
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image1")'>
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image1")' name='image1'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image2")' name='image2'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image3")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
-  </div>
-</div>
-
-
-<div class="form-group row">
-  <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
-  </div>
-  <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
-  </div>
-  <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
-  </div>
-  <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image4")'>
   </div>
 </div>
 
 
 <div class="form-group row">
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image5")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image6")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image7")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image8")'>
   </div>
 </div>
 
 
 <div class="form-group row">
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image9")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image10")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image11")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image12")'>
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image13")'>
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image14")'>
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image15")'>
+  </div>
+  <div class="col-sm-3">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image16")'>
   </div>
 </div>
 
 <div class="form-group row">
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image17")'>
   </div>
   <div class="col-sm-3">
-    <input type="file" class="form-control" id="usr">
+    <input type="file" class="form-control" id="usr" (change)='onFileSelected($event, "image18")'>
   </div>
 
 </div>
@@ -249,7 +249,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Balcony
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Balcony' name='Balcony'>Balcony
   </label>
 </div>
 </div>
@@ -259,7 +259,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Outdoor Area
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Outdoor_area' name='Outdoor_area'>Outdoor Area
   </label>
 </div>
 </div>
@@ -269,28 +269,28 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Undercover Parking
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Undercover_parking' name='Undercover_parking'>Undercover Parking
   </label>
 </div>
 </div>
 </div>
-
 <div class="col-sm-2">
-<div class="form-group">
-<div class="form-check">
-  <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Fully Fenced
-  </label>
-</div>
-</div>
-</div>
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Shed' name='Shed'> Shed
+    </label>
+  </div>
+  </div>
+  </div>
+
 </div>
 <div class="form-group row">
 <div class="col-sm-2">
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Outdoor Spa
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Outdoor_spa' name='Outdoor_spa'>Outdoor Spa
   </label>
 </div>
 </div>
@@ -300,7 +300,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Tennis Court
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Tennis_court' name='Tennis_court'>Tennis Court
   </label>
 </div>
 </div>
@@ -310,7 +310,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Ensuite
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Ensuite' name='Ensuite'>Ensuite
   </label>
 </div>
 </div>
@@ -320,7 +320,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">DishWasher
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.DishWasher' name='DishWasher'>DishWasher
   </label>
 </div>
 </div>
@@ -330,21 +330,21 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Study
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Study' name='Study'>Study
   </label>
 </div>
 </div>
 </div>
 
 <div class="col-sm-2">
-<div class="form-group">
-<div class="form-check">
-  <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Alarm System
-  </label>
-</div>
-</div>
-</div>
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Built_in_robes' name='Built_in_robes'>Built in robes
+    </label>
+  </div>
+  </div>
+  </div>
 </div>
 
 <div class="form-group row">
@@ -352,7 +352,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Broadband
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Broadband' name='Broadband'>Broadband
   </label>
 </div>
 </div>
@@ -362,7 +362,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Floorboards
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Floorboards' name='Floorboards'>Floorboards
   </label>
 </div>
 </div>
@@ -372,7 +372,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Gym
+    <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Gym' name='Gym'>Gym
   </label>
 </div>
 </div>
@@ -382,7 +382,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Rumpus Room
+    <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Rumpus_room' name='Rumpus_room'>Rumpus Room
   </label>
 </div>
 </div>
@@ -392,7 +392,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Workshop
+    <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Workshop' name='Workshop'>Workshop
   </label>
 </div>
 </div>
@@ -402,7 +402,7 @@
 <div class="form-group">
 <div class="form-check">
   <label class="form-check-label">
-    <input type="checkbox" class="form-check-input" value="">Air Conditioning
+    <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Air_conditioning' name='Air_conditioning'>Air Conditioning
   </label>
 </div>
 </div>
@@ -415,7 +415,7 @@
   <div class="form-group">
   <div class="form-check">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value="">Solar Panels
+      <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Solar_panels' name='Solar_panels'>Solar Panels
     </label>
   </div>
   </div>
@@ -425,7 +425,7 @@
   <div class="form-group">
   <div class="form-check">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value="">Heating
+      <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Heating' name='Heating'>Heating
     </label>
   </div>
   </div>
@@ -435,7 +435,16 @@
   <div class="form-group">
   <div class="form-check">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value="">High Energy Efficiency
+      <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.High_energy_efficiency' name='High_energy_efficiency'>High Energy Efficiency
+    </label>
+  </div>
+  </div>
+  </div>
+  <div class="col-sm-2">
+  <div class="form-group">
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Water_tank' name='Water_tank'>Water Tank
     </label>
   </div>
   </div>
@@ -445,13 +454,36 @@
   <div class="form-group">
   <div class="form-check">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value="">Solar Hot Water
+      <input type="checkbox" class="form-check-input" value=""  [(ngModel)]='sellModel.Solar_hot_water' name='Solar_hot_water'> Solar Hot Water
     </label>
   </div>
   </div>
   </div>
 
+  <div class="col-sm-2">
+    <div class="form-group">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Fully_fenced' name='Fully_fenced'>Fully Fenced
+      </label>
+    </div>
+    </div>
+    </div>
+
   </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-group">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="checkbox" class="form-check-input" value="" [(ngModel)]='sellModel.Alarm_system' name='Alarm_system'>Alarm System
+        </label>
+      </div>
+      </div>
+      </div>
+  </div>
+
   <div class="row">
     <div class="col-md-6"></div>
     <button type="Submit" class="btn btn-primary btn-block">Submit</button>

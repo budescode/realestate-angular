@@ -1,0 +1,101 @@
+<style>
+  #more {display: none;}
+  .containershow {
+  font-size: 16px;
+  line-height: 16px;
+  height: 94px;
+  overflow: hidden;
+}
+
+ .show {
+  overflow: visible;
+  height: auto;
+}
+#map {
+    height: 100%;
+    width: 100%;
+   }
+  </style>
+<div class='container'>
+<div class="row">
+  <div class='col-md-12'>
+    <!-- A grey horizontal navbar that becomes vertical on small screens -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style='border-top: 1px solid lightgray; border-bottom: 1px solid lightgray; '>
+<div id="navbarNavDropdown" class="navbar-collapse collapse">
+
+    <ul class="navbar-nav" style="margin-top: 24px">
+
+        <li class="nav-item">
+            <div class="form-group">
+            <label class="d-inline-block" for="">Sort By:</label>
+            <select class="form-control form-control-sm d-inline-block" style="width: auto;" id="sortby" name='sortby' onchange="this.form.submit()">
+            <option value="Relevant">Most Relevant</option>
+            <option value="-created">Date (Newest - Oldest)</option>
+            <option value="created">Date (Oldest - Newest)</option>
+            <option value="Price">Price (Lowest - Highest)</option>
+            <option value="-Price">Price (Highest - Lowest)</option>
+            </select>
+            </div>
+        </li>
+
+    </ul>
+</div>
+</nav>
+
+<div class='row'>
+<div class='col-md-12'>
+<div id="searchitem" style=""></div>
+</div>
+</div>
+
+<hr>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<div class="card" style='margin-bottom:20px;' *ngFor='let i of details | paginate: { itemsPerPage: 30, currentPage: p }'>
+<div class="card-body">
+    <h4 class="card-title"> <p>{{i.street_number}}, {{i.street_name}} {{i.state}} {{i.suburb}}, {{i.postcode}}</p></h4>
+    <p class="card-text">
+
+    <div class='row'>
+    <div class='col-md-4'>
+      <a href=''>   <img class='img-fluid' src='{{i.image}}'> </a>
+
+    </div>
+    <div class='col-md-8'>
+
+    <div class='row'>
+   <div class='col-md-12' style='background-color:darkred; color: white; padding: 8px 8px;'>
+        <i class='fa fa-bed' style='color:white'></i> {{i.Bedrooms}}
+        <i class='fa fa-bath' style='color:white'></i> {{i.Bathrooms}}
+        <i class='fa fa-car' style='color:white'></i>  {{i.Car_spaces}}
+        <i class='fa fa-star' id='star' style='color:white; float:right; cursor:pointer'></i>
+
+
+
+    </div>
+    </div>
+    <hr>
+
+    {{i.created | date}}  <br> <br>
+    {{i.Property_type}} | ${{i.Price}}  |  <a [routerLink]="['/detail', i.id_user]">See more</a>  <br>
+
+      <br>
+    </div>
+
+    </div>
+    <!--row-->
+    <hr>
+
+</div>
+</div>
+<!--end card-->
+
+
+
+</div>
+<!--end col-md-8-->
+
+</div>
+<!-- // end row -->
+</div>
+<!-- end container -->

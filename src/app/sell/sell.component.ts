@@ -44,7 +44,7 @@ export class SellComponent implements OnInit {
       data => {
         // console.log(this.countrydetaillsapi, 'comedylist');
         const unique = this.getUnique(data, 'postcode');
-        this.countrydetaillsapi = unique;
+        this.countrydetaillsapi = this.getUnique(unique, 'suburb');
         // this.testlist = data;
         console.log(this.countrydetaillsapi, 'datttaa');
         console.log(data, 'original');
@@ -62,6 +62,7 @@ export class SellComponent implements OnInit {
   onFileSelected(event, formname) {
     // const image = event.target.files[0];
     this.form.append(formname, event.target.files[0], event.target.files[0].name);
+    console.log(event.target.files[0]);
 
    }
   //  onFileSelected1(event, data) {
@@ -73,7 +74,13 @@ export class SellComponent implements OnInit {
 
     // console.log(this.sellModel, 'submitted', form);
     for (const [key, value] of Object.entries(this.sellModel)) {
-      if (key.includes('image') || key.includes('plan')) {
+      if (key.includes('image') || key.includes('plan') || key.includes('image1') ||
+       key.includes('image2') || key.includes('image3') || key.includes('image4') ||
+       key.includes('image5') || key.includes('image6') || key.includes('image7') ||
+       key.includes('image8') || key.includes('image9') || key.includes('image10') ||
+       key.includes('image11') || key.includes('image12') || key.includes('image3') ||
+       key.includes('image14') || key.includes('image15') || key.includes('image16') ||
+       key.includes('image17') || key.includes('image18')) {
       //   if (value !== null || value !== '') {
       //   this.form.append('image', key, value);
       //   console.log('yeah its a file');
@@ -88,6 +95,7 @@ export class SellComponent implements OnInit {
      {headers: new HttpHeaders({Authorization: 'Token b9c43a76d8e68e995decb6f7e80546cf475fe844'})}).subscribe(data => {
       // this.apikey = data.key;
       console.log('Success!');
+      this.router.navigate(['/mypost']);
     },
     // tslint:disable-next-line: no-string-literal
     error => console.log('oops', error.error)

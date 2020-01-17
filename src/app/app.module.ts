@@ -27,6 +27,7 @@ import { SellComponent } from './sell/sell.component';
 import { LogoutComponent } from './logout/logout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MypostComponent } from './mypost/mypost.component';
 
 const appRoutes: Routes = [
 
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
   {
     path: 'sell',
     component: SellComponent,
+  },
+  {
+    path: 'mypost',
+    component: MypostComponent,
   },
   {
     path: 'signin',
@@ -92,7 +97,8 @@ export function provideConfig() {
     SignupComponent,
     SellComponent,
     LogoutComponent,
-    NavbarComponent
+    NavbarComponent,
+    MypostComponent
   ],
   imports: [
     BrowserModule,

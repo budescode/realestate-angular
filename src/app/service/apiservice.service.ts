@@ -10,6 +10,7 @@ import { Sell } from '../class/sell';
   providedIn: 'root'
 })
 export class ApiserviceService {
+  mypostUrl = 'http://127.0.0.1:8000/indexapi/myposterlistapi/';
   signupUrl = 'http://127.0.0.1:8000/accountapi/usercreate/';
   signinUrl = 'http://127.0.0.1:8000/rest-auth/login/';
   sellUrl = 'http://127.0.0.1:8000/indexapi/postercreate/';
@@ -33,9 +34,15 @@ export class ApiserviceService {
   signin(login: Signin) {
     return this.http.post<any>(this.signinUrl, login);
     }
-  sell(sell: Sell) {
-      let form = new FormData();
+  mypost() {
       const key = localStorage.getItem('apikey');
+      this.apikey = key;
+      console.log('keyyyy', this.apikey);
+      return this.http.get<any>(this.mypostUrl,
+        {headers: new HttpHeaders({Authorization: 'Token ' + this.apikey })});
+   }
+  sell(sell: Sell) {
+        const key = localStorage.getItem('apikey');
       this.apikey = key;
       console.log('keyy', Sell);
       return this.http.post<any>(this.sellUrl, sell,

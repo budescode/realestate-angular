@@ -12,6 +12,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class FilterComponent implements OnInit {
   // this is for  ng-multiselect-dropdown;
+
   dropdownSettings: IDropdownSettings;
   dropdownList = [];
   selectedItems = [];
@@ -20,6 +21,7 @@ export class FilterComponent implements OnInit {
   p = 1;
   searchparam: any;
   filterdetails: any;
+  filterdetails1: any;
   previous: any;
   next: any;
   count: any;
@@ -36,6 +38,7 @@ export class FilterComponent implements OnInit {
       data => {
         // console.log(this.countrydetaillsapi, 'comedylist');
         this.filterdetails = data.results;
+        this.filterdetails1 = data.results;
         this.previous = data.previous;
         this.next = data.next;
         this.count = data.count;
@@ -88,6 +91,97 @@ export class FilterComponent implements OnInit {
     console.log('this.propertytype', this.searchModel.propertytype);
 
   }
+  pricemin() {
+    let pricemin  = this.searchModel.pricemin;
+    pricemin = pricemin.replace(',', '');
+    pricemin = pricemin.replace('$', '');
+    pricemin = pricemin.replace(' ', '');
+    if (pricemin === 'Any') {
+      const newlist = this.filterdetails.filter( el => el.Price >= 0);
+      this.filterdetails1 = newlist;
+      console.log(newlist, this.filterdetails);
+      console.log(pricemin, 'yeajhh');
+    } else {
+    // filterdetails
+    const newlist = this.filterdetails.filter( el => el.Price >= pricemin);
+    this.filterdetails1 = newlist;
+    console.log(pricemin, 'yeajhh');
+    }
+  }
+  pricemax() {
+    let pricemax  = this.searchModel.pricemax;
+    pricemax = pricemax.replace(',', '');
+    pricemax = pricemax.replace('$', '');
+    pricemax = pricemax.replace(' ', '');
+    if (pricemax === 'Any') {
+      const newlist = this.filterdetails.filter( el => el.Price <= 10000000000000000);
+      this.filterdetails1 = newlist;
+      console.log(newlist, this.filterdetails);
+      console.log(pricemax, 'yeajhh');
+    } else {
+    // filterdetails
+    const newlist = this.filterdetails.filter( el => el.Price <= pricemax);
+    this.filterdetails1 = newlist;
+    console.log(pricemax, 'yeajhh');
+    }
+  }
+  bedmin() {
+    const bedmin  = this.searchModel.bedmin;
+    if (bedmin === 'Any' ) {
+      const newlist = this.filterdetails.filter( el => el.Bedrooms >= 10000000000000000);
+      this.filterdetails1 = newlist;
+      console.log(newlist, this.filterdetails);
+      console.log(bedmin, 'yeajhh');
+    } else if (bedmin === 'Studio' ) {
+      const newlist = this.filterdetails.filter( el => el.Bedrooms >= 0);
+      this.filterdetails1 = newlist;
+      console.log(newlist, this.filterdetails);
+      console.log(bedmin, 'yeajhh');
+    }  else {
+    // filterdetails
+    const newlist = this.filterdetails.filter( el => el.Bedrooms >= bedmin);
+    this.filterdetails1 = newlist;
+    console.log(bedmin, 'yeajhh');
+    }
+  }
+  bedmax() {
+    const bedmax  = this.searchModel.bedmax;
+    if (bedmax === 'Any' ) {
+      const newlist = this.filterdetails.filter( el => el.Bedrooms <= 10000000000000000);
+      this.filterdetails1 = newlist;
+      console.log(newlist, this.filterdetails);
+      console.log(bedmax, 'yeajhh');
+    } else if (bedmax === 'Studio' ) {
+      const newlist = this.filterdetails.filter( el => el.Bedrooms <= 0);
+      this.filterdetails1 = newlist;
+      console.log(newlist, this.filterdetails);
+      console.log(bedmax, 'yeajhh');
+    }  else {
+    // filterdetails
+    const newlist = this.filterdetails.filter( el => el.Bedrooms <= bedmax);
+    this.filterdetails1 = newlist;
+    console.log(bedmax, 'yeajhh');
+    }
+  }
+  // bathrooms() {
+  //   const bathroom  = this.searchModel.Bathrooms;
+  //   if (bathroom === 'Any' ) {
+  //     const newlist = this.filterdetails.filter( el => el.Bathrooms >= 10000000000000000);
+  //     this.filterdetails1 = newlist;
+  //     console.log(newlist, this.filterdetails);
+  //     console.log(bathroom, 'yeajhh');
+  //   } else if (bathroom === 'Studio' ) {
+  //     const newlist = this.filterdetails.filter( el => el.Bathrooms >= 0);
+  //     this.filterdetails1 = newlist;
+  //     console.log(newlist, this.filterdetails);
+  //     console.log(bathroom, 'yeajhh');
+  //   }  else {
+  //   // filterdetails
+  //   const newlist = this.filterdetails.filter( el => el.Bathrooms >= bathroom);
+  //   this.filterdetails1 = newlist;
+  //   console.log(bathroom, 'yeajhh');
+  //   }
+  // }
   ngOnInit() {
     // console.log(this.searchparam, 'yeah yeah');
     this.getFilterDetail();
