@@ -155,8 +155,8 @@ getCountryDetail = () => {
   this.api.getcountryDetails().subscribe(
     data => {
       // console.log(this.countrydetaillsapi, 'comedylist');
-      const unique = this.getUnique(data, 'postcode');
-      this.countrydetaillsapi = unique;
+      const unique = this.getUnique(data, 'suburb');
+      this.countrydetaillsapi = data;
       this.testlist = data;
       console.log(this.countrydetaillsapi, 'datttaa');
       console.log(data, 'originalll');

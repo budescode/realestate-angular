@@ -19,7 +19,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MapsearchComponent } from './mapsearch/mapsearch.component';
 import { LoginComponent } from './login/login.component';
 
-import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+// import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -28,6 +28,33 @@ import { LogoutComponent } from './logout/logout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MypostComponent } from './mypost/mypost.component';
+
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  LinkedinLoginProvider
+} from 'ng4-social-login';
+
+const CONFIG = new AuthServiceConfig([
+  // {
+  //   id: GoogleLoginProvider.PROVIDER_ID,
+  //   provider: new GoogleLoginProvider('Google-OAuth-Client-Id')
+  // },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('1415669241944851')
+  },
+  // {
+  //   id: LinkedinLoginProvider.PROVIDER_ID,
+  //   provider: new LinkedinLoginProvider('LINKEDIN_CLIENT_ID')
+  // }
+], true);
+
+export function provideConfig() {
+  return CONFIG;
+}
 
 const appRoutes: Routes = [
 
@@ -74,16 +101,16 @@ const appRoutes: Routes = [
 
 ];
 
-const config = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('1415669241944851')
-  }
-]);
+// const config = new AuthServiceConfig([
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     provider: new FacebookLoginProvider('1415669241944851')
+//   }
+// ]);
 
-export function provideConfig() {
-  return config;
-}
+// export function provideConfig() {
+//   return config;
+// }
 
 @NgModule({
   declarations: [
@@ -118,9 +145,10 @@ export function provideConfig() {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBfZ86mdGX5E7o4PGSB7ct22axSb_JzVTY'
     }),
-    SocialLoginModule, // social authentication
+    // SocialLoginModule, // social authentication
     NgxPaginationModule,
     NgbModule,
+    SocialLoginModule
   ],
   providers: [
     {

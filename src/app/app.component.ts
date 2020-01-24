@@ -1,9 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+// import { AuthService, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { Signin } from './class/signin';
 import {NgbModal, ModalDismissReasons, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import { ApiserviceService } from './service/apiservice.service';
+
+import {
+  AuthService,
+  SocialUser,
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  LinkedinLoginProvider
+} from 'ng4-social-login';
+
 // console.log(`jQuery version: ${$.fn.jquery}`);
 // angularx-social-login https://www.djamware.com/post/5d4628d5721e1ce9d7dc95b0/angular-8-tutorial-facebook-login
 // https://www.djamware.com/post/5d4628d5721e1ce9d7dc95b0/angular-8-tutorial-facebook-login
@@ -19,13 +30,14 @@ export class AppComponent implements OnInit {
   details = [{longitude: 51.678418, latitude: 7.809007}];
   latitude = 51.678418;
   longitude = 7.809007;
-  user: SocialUser;
+  public user: any =  SocialUser;
+  username = 'bude';
   loggedIn: boolean;
   apikey = 'null';
   closeResult: string;
   modalOptions: NgbModalOptions;
 
-  constructor(private authService: AuthService, private api: ApiserviceService, private router: Router,  private modalService: NgbModal) {
+  constructor(private socialAuthService: AuthService,  private api: ApiserviceService, private router: Router,  private modalService: NgbModal) {
     this.modalOptions = {
       backdrop: 'static',
       backdropClass: 'customBackdrop'
@@ -38,6 +50,13 @@ export class AppComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+  FBSignin(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((userData) => {
+      this.user = userData;
+      this.username = userData.name;
+      console.log('yeahhhh', this.username);
+    });
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -48,7 +67,7 @@ export class AppComponent implements OnInit {
     }
   }
   signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
   onSubmit(): void {
     console.log(this.signInModel);

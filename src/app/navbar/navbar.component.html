@@ -118,7 +118,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">REALESTATE</a>
+  <a class="navbar-brand" routerLink='/'>REALESTATE</a>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -127,7 +127,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" id='darkred' routerLink='/sell'>SELL</a>
+        <a class="nav-link" id='darkred' routerLink='/sell' *ngIf="apikey!=='null'">SELL</a>
       </li>
 
     <li class="nav-item">
@@ -140,14 +140,19 @@
     <li class="nav-item">
     <a class="nav-link" *ngIf="apikey!=='null'" id='darkred'>NOTIFICATIONS</a>
     </li>
+    <li class="nav-item">
+    <a class="nav-link" *ngIf="apikey!=='null'" id='darkred'>{{myuser}}</a>
+    </li>
+
 
     </ul>
    <form class="form-inline my-2 my-lg-0">
     <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button> -->
       <button (click)="signOut()" *ngIf="apikey!=='null'" class="btn btn-outline-success my-2 my-sm-0" type="button" id='btndarkred'>Logout</button>
 
-     <button (click)="open(mymodal, 'signup')"  class="btn btn-outline-success my-2 my-sm-0" type="button" id='btndarkred'>SIGNUP</button>
-     <button (click)="open(mymodal, 'signin')" class="btn btn-outline-success my-2 my-sm-0" type="button" id='btndarkred'>SIGNIN</button>
+     <button (click)="open(mymodal, 'signup')"  class="btn btn-outline-success my-2 my-sm-0" type="button" id='btndarkred'>SIGNIN</button>
+     <!-- <button (click)="FBSignin()" class="btn btn-outline-success my-2 my-sm-0" type="button" id='btndarkred'>SIGNIN</button> -->
+     <!-- <button (click)="open(mymodal, 'signin')" class="btn btn-outline-success my-2 my-sm-0" type="button" id='btndarkred'>SIGNIN</button> -->
 
     </form>
 
@@ -167,7 +172,7 @@
       <div class="alert alert-secondary">
         Sign Up Your Account
       </div>
-      <label>Username</label>
+      <!-- <label>Username</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
@@ -185,16 +190,16 @@
         </div>
         <input type="email" [(ngModel)]='signUpModel.email' class="form-control" placeholder="Email" name='email'>
       </div>
-      <label>Password </label>
-      <div class="input-group mb-3">
+      <label>Password </label> -->
+      <!-- <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
              <i class='fa fa-key'></i>
           </div>
         </div>
         <input type="password" [(ngModel)]='signUpModel.password' class="form-control" name='password'>
-      </div>
-      <button type="submit" class='btn btn-block btn-danger'>Register</button>
+      </div> -->
+      <button (click)="FBSignin()" class='btn btn-block btn-primary'>SIGN IN WITH FACEBOOK</button>
 </form>
 
     <form #userForm='ngForm' (ngSubmit)='loginUser()' *ngIf="check==='signin'">

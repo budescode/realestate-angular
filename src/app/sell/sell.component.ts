@@ -22,6 +22,7 @@ export class SellComponent implements OnInit {
   image: File = null;
   plan: File = null;
   form = new FormData();
+  mykey = '';
   constructor(private api: ApiserviceService, private router: Router, private http: HttpClient) { }
 
   // this function is used to remove duplicates
@@ -71,6 +72,7 @@ export class SellComponent implements OnInit {
   //   this.form.append('plan', event.target.files[0], event.target.files[0].name);
   //  }
   onSubmit() {
+    this.mykey =    'Token ' + localStorage.getItem('apikey');
 
     // console.log(this.sellModel, 'submitted', form);
     for (const [key, value] of Object.entries(this.sellModel)) {
@@ -91,8 +93,9 @@ export class SellComponent implements OnInit {
       console.log(key, value, 'yeah');
     }
     console.log(this.form, 'formmm');
-    this.http.post('http://127.0.0.1:8000/indexapi/postercreate/', this.form,
-     {headers: new HttpHeaders({Authorization: 'Token b9c43a76d8e68e995decb6f7e80546cf475fe844'})}).subscribe(data => {
+
+    this.http.post('https://anandrathi.pythonanywhere.com/indexapi/postercreate/', this.form,
+     {headers: new HttpHeaders({Authorization: this.mykey})}).subscribe(data => {
       // this.apikey = data.key;
       console.log('Success!');
       this.router.navigate(['/mypost']);
