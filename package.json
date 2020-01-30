@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "nodemon server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build — aot — prod"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@types/jquery": "^3.3.31",
     "angular-bootstrap-multiselect": "^1.1.11",
     "angularx-social-login": "^2.2.1",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "ng-facebook": "^0.1.6",
     "ng-multiselect-dropdown": "^0.2.10",
@@ -34,6 +36,7 @@
     "ngx-owl-carousel-o": "^2.0.3",
     "ngx-pagination": "^5.0.0",
     "ngx-ui-loader": "^8.0.0",
+    "nodemon": "^2.0.2",
     "owl.carousel": "^2.3.4",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.4",
