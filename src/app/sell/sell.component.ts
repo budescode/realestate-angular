@@ -94,7 +94,7 @@ export class SellComponent implements OnInit {
     }
     console.log(this.form, 'formmm');
 
-    this.http.post('https://anandrathi.pythonanywhere.com/indexapi/postercreate/', this.form,
+    this.http.post('https://anandrathi-api.herokuapp.com/indexapi/postercreate/', this.form,
      {headers: new HttpHeaders({Authorization: this.mykey})}).subscribe(data => {
       // this.apikey = data.key;
       console.log('Success!');
