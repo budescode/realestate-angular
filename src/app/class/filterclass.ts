@@ -1,0 +1,41 @@
+export class Filterclass {
+  constructor(
+    public name: string,
+    public pricemin: string,
+    public pricemax: string,
+    public bedmin: string,
+    public bedmax: string,
+    public propertytype: any,
+    public Bathrooms: string,
+    public Car_spaces: string,
+    public land_size: string,
+    public new_or_established: string,
+    public Swimming_pool: boolean,
+    public Garage: boolean,
+    public Balcony: boolean,
+    public Outdoor_area: boolean,
+    public Undercover_parking: boolean,
+    public Shed: boolean,
+    public Fully_fenced: boolean,
+    public Outdoor_spa: boolean,
+    public Tennis_court: boolean,
+    public Ensuite: boolean,
+    public DishWasher: boolean,
+    public Study: boolean,
+    public Built_in_robes: boolean,
+    public Alarm_system: boolean,
+    public Broadband: boolean,
+    public Floorboards: boolean,
+    public Gym: boolean,
+    public Rumpus_room: boolean,
+    public Workshop: boolean,
+    public Air_conditioning: boolean,
+    public Solar_panels: boolean,
+    public Heating: boolean,
+    public High_energy_efficiency: boolean,
+    public Water_tank: boolean,
+    public Solar_hot_water: boolean
+) {}
+
+}
+

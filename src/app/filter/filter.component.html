@@ -56,7 +56,7 @@
 
 <div class='row'>
 <div class='col-md-12'>
-<div id="searchitem" style=""></div>
+<div id="searchitem"></div>
 </div>
 </div>
 
@@ -131,7 +131,10 @@
     </div>
     <hr>
 
-    {{i.created | date}}  <br> <br>
+    {{i.created | date}}  <br>
+    {{i.new_or_established}}<br>
+    {{i.Swimming_pool}}
+    <br>
     {{i.Property_type}} | ${{i.Price}}  |  <a [routerLink]="['/detail', i.id_user]">See more</a>  <br>
 
       <br>
@@ -151,15 +154,24 @@
 <!--end col-md-8-->
 <!-- start col-md-4 -->
 <div class='col-md-4'>
+  <form action="" method="post" #searchForm='ngForm' (ngSubmit)='submitForm()' >
 <div class="form-group row">
+
 <div class='col-md-12'>
-<input type="text" name="filterlist" id="filterlist" class="form-control" value="">
+<input type="text" name="filterlist" id="filterlist" class="form-control" (focus)="showDiv()" name='search' [(ngModel)]='filterModel.name' (keyup) = 'filterCountryDetails()'>
+</div>
+<div class="col-md-12">
+    <div style="height: 300px; overflow-y: auto; overflow-x: hidden;" *ngIf='dis'>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor='let i of testlist' (click)='getDetails(i)'>{{i.suburb}} - {{i.state}}</li>
+        </ul>
+   </div>
 </div>
 
 <!-- start pricemin -->
 <div class="col-sm-6">
   <label for="pricemin"><small>Price (Min):</small></label>
-      <select class="custom-select custom-select-sm" name="pricemin" [(ngModel)]='searchModel.pricemin'(change)='pricemin()'>
+      <select class="custom-select custom-select-sm" name="pricemin" [(ngModel)]='filterModel.pricemin'(change)='pricemin()'>
       <option>Any </option>
       <option>$50,000 </option>
       <option>$75,000</option>
@@ -223,7 +235,7 @@
 <!-- start pricemax -->
 <div class="col-sm-6">
   <label for="pricemax"><small>Price (Max):</small></label>
-  <select class="custom-select custom-select-sm" id="pricemax" name="pricemax" [(ngModel)]='searchModel.pricemax'(change)='pricemax()'>
+  <select class="custom-select custom-select-sm" id="pricemax" name="pricemax" [(ngModel)]='filterModel.pricemax'(change)='pricemax()'>
   <option>Any </option>
   <option>$50,000 </option>
   <option>$75,000</option>
@@ -283,26 +295,25 @@
   </select>
   </div>
   <!--end pricemax-->
-
   <!-- stare bedmin -->
   <div class='col-md-6'>
     <label for="bedmin"> <small>Bed (Min):</small></label>
-    <select class="custom-select custom-select-sm" name="bedmin" [(ngModel)]='searchModel.bedmin'(change)='bedmin()' >
+    <select class="custom-select custom-select-sm" name="bedmin" [(ngModel)]='filterModel.bedmin'(change)='bedmin()' >
     <option>Any</option>
     <option>Studio</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
     </select>
   </div>
 <!-- end bedmin -->
 <!-- startbedmax -->
    <div class='col-md-6'>
     <label for="bedmax"> <small>Bed (Max):</small></label>
-    <select class="custom-select custom-select-sm" name="bedmax" [(ngModel)]='searchModel.bedmax' (change)='bedmax()'>
-    <option value='Any'>Any</option>
+    <select class="custom-select custom-select-sm" name="bedmax" [(ngModel)]='filterModel.bedmax' (change)='bedmax()'>
+    <option value='Any' selected>Any</option>
     <option value='Studio'>Studio</option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -329,7 +340,7 @@
   <!-- startbathrooms -->
   <div class='col-md-6'>
     <label for=""> <small>Bathrooms:</small></label>
-    <select class="custom-select custom-select-sm" id="" name="" >
+    <select class="custom-select custom-select-sm" id="" name="Bathrooms" (change)='bathrooms()' [(ngModel)]='filterModel.Bathrooms' >
     <option>Any</option>
     <option>Studio</option>
     <option value="1">1</option>
@@ -343,7 +354,7 @@
   <!-- start car spaces -->
   <div class='col-md-6'>
     <label for=""> <small>Car Spaces:</small></label>
-    <select class="custom-select custom-select-sm" id="" name="" >
+    <select class="custom-select custom-select-sm" id="" name="Car_spaces" (change)='carSpaces()' [(ngModel)]='filterModel.Car_spaces' >
     <option>Any</option>
     <option>Studio</option>
     <option value="1">1</option>
@@ -357,7 +368,7 @@
     <!-- start min land size -->
     <div class='col-md-6'>
     <label for=""> <small>Min land size (m2):</small></label>
-    <select class="custom-select custom-select-sm" id="bedmin" name="" >
+    <select class="custom-select custom-select-sm" name="land_size" (change)='landsize()' [(ngModel)]='filterModel.land_size'>
     <option>Any</option>
     <option>Studio</option>
     <option value="100">100</option>
@@ -371,7 +382,7 @@
 <!-- start new or established -->
     <div class='col-md-6'>
     <label for=""> <small>New or established:</small></label>
-    <select class="custom-select custom-select-sm" id="" name="" >
+    <select class="custom-select custom-select-sm" name="new_or_established" (change)='new_or_established()'  [(ngModel)]='filterModel.new_or_established'>
     <option value='Any'>Any</option>
     <option value='New'>New</option>
     <option value="Established">Established</option>
@@ -385,52 +396,52 @@
   </div>
   <div class="form-check-inline">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Swimming_pool' onclick=changeFilter(this)> Swimming pool
+      <input type="checkbox" class="form-check-input" name='Swimming_pool' (click)='changeFilter("Swimming_pool")' [(ngModel)]='filterModel.Swimming_pool'> Swimming pool
     </label>
   </div>
   <div class="form-check-inline">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Balcony' onclick=changeFilter(this)> Balcony
+      <input type="checkbox" class="form-check-input"  name='Balcony' (click)='changeFilter("Balcony")' [(ngModel)]='filterModel.Balcony'> Balcony
     </label>
   </div>
   <hr>
 <div class="form-check-inline">
     <label class="form-check-label" for="check1">
-      <input type="checkbox" class="form-check-input" id="check1"  value="Garage" onclick=changeFilter(this)> Garage
+      <input type="checkbox" class="form-check-input" name='Garage' (click)='changeFilter("Garage")' [(ngModel)]='filterModel.Garage'> Garage
     </label>
   </div>
   <div class="form-check-inline">
     <label class="form-check-label" for="check2">
-      <input type="checkbox" class="form-check-input" id="check2" value="Outdoor_area" onclick=changeFilter(this)> Outdoor area
+      <input type="checkbox" class="form-check-input" id="check2" name='Outdoor_area' (click)='changeFilter("Outdoor_area")' [(ngModel)]='filterModel.Outdoor_area'> Outdoor area
     </label>
   </div>
 
   <hr>
   <div class="form-check-inline">
     <label class="form-check-label" for="check1">
-      <input type="checkbox" class="form-check-input" id="check1"  value="Fully_fenced" onclick=changeFilter(this) > Fully fenced
+      <input type="checkbox" class="form-check-input" id="check1"  name="Fully_fenced" (click)='changeFilter("Fully_fenced")' [(ngModel)]='filterModel.Fully_fenced'> Fully fenced
     </label>
   </div>
   <div class="form-check-inline">
     <label class="form-check-label" for="check2">
-      <input type="checkbox" class="form-check-input" id="check2" value="Shed" onclick=changeFilter(this)> Shed
+      <input type="checkbox" class="form-check-input" id="check2" name="Shed" (click)='changeFilter("Shed")' [(ngModel)]='filterModel.Shed'> Shed
     </label>
   </div>
   <hr>
   <div class="form-check-inline">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Outdoor_spa' onclick=changeFilter(this)> Outdoor spa
+      <input type="checkbox" class="form-check-input" name='Outdoor_spa' (click)='changeFilter("Outdoor_spa")' [(ngModel)]='filterModel.Outdoor_spa'> Outdoor spa
     </label>
   </div>
 <div class="form-check-inline">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Tennis_court' onclick=changeFilter(this)> Tennis court
+      <input type="checkbox" class="form-check-input" name='Tennis_court' (click)='changeFilter("Tennis_court")' [(ngModel)]='filterModel.Tennis_court'> Tennis court
     </label>
   </div>
   <hr>
   <div class="form-check-inline">
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Undercover_parking' onclick=changeFilter(this)> Undercover parking
+      <input type="checkbox" class="form-check-input" name='Undercover_parking' (click)='changeFilter("Undercover_parking")' [(ngModel)]='filterModel.Undercover_parking'> Undercover parking
     </label>
   </div>
   <div class='col-md-12'><br>
@@ -439,56 +450,56 @@
     </div>
     <div class="form-check-inline">
       <label class="form-check-label" for="check1">
-      <input type="checkbox" class="form-check-input" value="Ensuite" onclick=changeFilter(this) > Ensuite
+      <input type="checkbox" class="form-check-input" name="Ensuite" (click)='changeFilter("Ensuite")' [(ngModel)]='filterModel.Ensuite' > Ensuite
       </label>
       </div>
       <div class="form-check-inline">
       <label class="form-check-label" for="check2">
-      <input type="checkbox" class="form-check-input"  value="DishWasher" onclick=changeFilter(this)> Dishwasher
+      <input type="checkbox" class="form-check-input"  name="DishWasher" (click)='changeFilter("DishWasher")' [(ngModel)]='filterModel.DishWasher'> Dishwasher
       </label>
       </div>
       <hr>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Built_in_robes' onclick=changeFilter(this)> Built in robes
+      <input type="checkbox" class="form-check-input" name='Built_in_robes' (click)='changeFilter("Built_in_robes")' [(ngModel)]='filterModel.Built_in_robes'> Built in robes
       </label>
       </div>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Study' onclick=changeFilter(this)> Study
-      </label>
-      </div>
-      <hr>
-      <div class="form-check-inline">
-      <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Alarm_system' onclick=changeFilter(this)> Alarm system
-      </label>
-      </div>
-      <div class="form-check-inline">
-      <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Broadband' onclick=changeFilter(this)> Broadband
+      <input type="checkbox" class="form-check-input" name='Study' (click)='changeFilter("Study")' [(ngModel)]='filterModel.Study'> Study
       </label>
       </div>
       <hr>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Floorboards' onclick=changeFilter(this)> Floorboards
+      <input type="checkbox" class="form-check-input" name='Alarm_system' (click)='changeFilter("Alarm_system")' [(ngModel)]='filterModel.Alarm_system'> Alarm system
       </label>
       </div>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Gym' onclick=changeFilter(this)> Gym
+      <input type="checkbox" class="form-check-input" name='Broadband' (click)='changeFilter("Broadband")' [(ngModel)]='filterModel.Broadband'> Broadband
       </label>
       </div>
       <hr>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Rumpus_room' onclick=changeFilter(this)> Rumpus room
+      <input type="checkbox" class="form-check-input" name='Floorboards' (click)='changeFilter("Floorboards")' [(ngModel)]='filterModel.Floorboards'> Floorboards
       </label>
       </div>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Workshop' onclick=changeFilter(this)> Workshop
+      <input type="checkbox" class="form-check-input" name='Gym' (click)='changeFilter("Gym")' [(ngModel)]='filterModel.Gym'> Gym
+      </label>
+      </div>
+      <hr>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name='Rumpus_room' (click)='changeFilter("Rumpus_room")' [(ngModel)]='filterModel.Rumpus_room'> Rumpus room
+      </label>
+      </div>
+      <div class="form-check-inline">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" name='Workshop' (click)='changeFilter("Workshop")' [(ngModel)]='filterModel.Workshop'> Workshop
       </label>
       </div>
       <hr>
@@ -500,39 +511,40 @@
 
       <div class="form-check-inline">
       <label class="form-check-label" for="check1">
-      <input type="checkbox" class="form-check-input" value="Air_conditioning" onclick=changeFilter(this) > Air conditioning
+      <input type="checkbox" class="form-check-input" name="Air_conditioning" (click)='changeFilter("Air_conditioning")' [(ngModel)]='filterModel.Air_conditioning' > Air conditioning
       </label>
       </div>
       <div class="form-check-inline">
       <label class="form-check-label" for="check2">
-      <input type="checkbox" class="form-check-input"  value="Solar_panels" onclick=changeFilter(this)> Solar panels
+      <input type="checkbox" class="form-check-input"  name="Solar_panels" (click)='changeFilter("Solar_panels")' [(ngModel)]='filterModel.Solar_panels'> Solar panels
       </label>
       </div>
       <hr>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Heating' onclick=changeFilter(this)> Heating
+      <input type="checkbox" class="form-check-input" name='Heating' (click)='changeFilter("Heating")' [(ngModel)]='filterModel.Heating'> Heating
       </label>
       </div>
 
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Water_tank' onclick=changeFilter(this)> Water tank
+      <input type="checkbox" class="form-check-input" name='Water_tank' (click)='changeFilter("Water_tank")' [(ngModel)]='filterModel.Water_tank'> Water tank
       </label>
       </div>
       <hr>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='Solar_hot_water' onclick=changeFilter(this)> Solar hot water
+      <input type="checkbox" class="form-check-input" name='Solar_hot_water' (click)='changeFilter("Solar_hot_water")' [(ngModel)]='filterModel.Solar_hot_water'> Solar hot water
       </label>
       </div>
       <div class="form-check-inline">
       <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" value='High_energy_efficiency' onclick=changeFilter(this)> High energy efficiency
+      <input type="checkbox" class="form-check-input" name='High_energy_efficiency' (click)='changeFilter("High_energy_efficiency")' [(ngModel)]='filterModel.High_energy_efficiency'> High energy efficiency
       </label>
       </div>
       <hr>
-
+<input type='submit' class='btn btn-primary btn-block' value='submit'>
+  </form>
 <!-- end form group row -->
 </div>
 <!-- end col-md-4 -->

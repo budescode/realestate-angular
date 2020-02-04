@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit {
   testlist = [];
   dis = false;
   search = '';
-  searchModel = new Classfunction(this.search, 'Any', 'Any', '', '', '');
+  searchModel = new Classfunction(this.search, 'Any', 'Any', 'Any', 'Any', '');
   realdata = [{name: 'DARWIN - NT'}, {name: 'BARTON - ACT'}, {name: 'PARAP - NT'}];
   countrydata = this.realdata;
   inputdata = '';
@@ -135,7 +135,7 @@ filterCountryDetails = () => {
 
 }
 
-// this function is used to remove duplicates
+// this function is used to remove duplicates from country details
 getUnique(arr, comp) {
 
   const unique = arr
@@ -167,9 +167,16 @@ getCountryDetail = () => {
   );
 }
 
+// this function is used to submit the data in the input
 submitForm = () => {
   this.searchModel.propertytype = this.propertytype;
   console.log('search model', this.searchModel.propertytype);
+  localStorage.setItem('search', this.searchModel.name.trim());
+  localStorage.setItem('pricemin', this.searchModel.pricemin);
+  localStorage.setItem('pricemax', this.searchModel.pricemax);
+  localStorage.setItem('bedmin', this.searchModel.bedmin);
+  localStorage.setItem('bedmax', this.searchModel.bedmax);
+
   const searchparams = {name: this.searchModel.name.trim(), bedmin: this.searchModel.bedmin, bedmax: this.searchModel.bedmax,
   pricemin: this.searchModel.pricemin, pricemax: this.searchModel.pricemax, propertytype: this.searchModel.propertytype};
   // console.log('submitted', this.searchModel.propertytype, this.searchModel.name);

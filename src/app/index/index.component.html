@@ -8,7 +8,7 @@
                     <div class="row">
                       <div class="col-md-12 jumbotron img-responsive center-block inline-block" id="jumbo">
 <form action="" method="post" #searchForm='ngForm' (ngSubmit)='submitForm()' >
-
+ 
 <div id="wrapper">
 <div class="demo">
 
@@ -49,32 +49,31 @@
 
 
 <div class="col-lg-2 col-md-2 col-xs-6">
-    <label for="demo">Bed (min)</label>
+  <label for="demo">Bed (min)</label>
 	<select name="bedmin" class="app-select form-control" required [(ngModel)]='searchModel.bedmin'>
-        <option selected>Any</option>
-        <option>Studio</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-
+    <option selected>Any</option>
+    <option>Studio</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
 	</select>
 </div>
 
 
 <div class="col-lg-2 col-md-2 col-xs-6">
-    <label for="demo">Bed (max)</label>
-	<select name="bedmax" class="app-select form-control" required [(ngModel)]='searchModel.bedmax'>
-        <option selected="selected">Any</option>
-        <option>Studio</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
+<label for="demo">Bed (max)</label>
+  <select name="bedmax" id='bedmax' class="app-select form-control" required [(ngModel)]='searchModel.bedmax'>
+    <option selected>Any</option>
+    <option>Studio</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
 
-	</select>
+  </select>
 </div>
 
 
