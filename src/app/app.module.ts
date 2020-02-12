@@ -36,6 +36,7 @@ import {
   FacebookLoginProvider,
   LinkedinLoginProvider
 } from 'ng4-social-login';
+import { SavedPropertyComponent } from './saved-property/saved-property.component';
 
 const CONFIG = new AuthServiceConfig([
   // {
@@ -97,7 +98,12 @@ const appRoutes: Routes = [
   {
     path: 'mapsearch',
     component: MapsearchComponent,
+  },
+  {
+    path: 'mysavedproperty',
+    component: SavedPropertyComponent,
   }
+
 
 ];
 
@@ -125,7 +131,8 @@ const appRoutes: Routes = [
     SellComponent,
     LogoutComponent,
     NavbarComponent,
-    MypostComponent
+    MypostComponent,
+    SavedPropertyComponent
   ],
   imports: [
     BrowserModule,

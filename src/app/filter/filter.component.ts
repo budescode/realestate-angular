@@ -27,14 +27,16 @@ export class FilterComponent implements OnInit {
   // end pagination
   dis = false;
   inputdata = '';
+  mysaved: any; // this is used to store user saved search
   realdata = [{name: 'DARWIN - NT'}, {name: 'BARTON - ACT'}, {name: 'PARAP - NT'}];
   countrydata = this.realdata;
   searchparam: any; //
   filterdetails: any;
-  filterdetails1: any;
+  filterdetails1 = [];
   countrydetaillsapi = [];
   testlist = [];
   search = '';
+  yes = 'yes'; // dont forget to delete
   filteredseachparam: any; // this will be used in this page when searching again. chack getfilterdetails and submitForm function
   searchitems = ''; // this is to place the searchitems, state and suburbs
   searchModel = new Classfunction(this.search, '', '', '', '', '');
@@ -56,7 +58,7 @@ export class FilterComponent implements OnInit {
         this.next = data.next;
         this.count = data.count;
         // this.filterdetails, this.previous, this.next,
-        console.log(this.filterdetails.length, data.results, 'datttaacountt');
+        console.log(this.filterdetails.length, 'datttaacountt');
       },
       error => {
         console.log(error);
@@ -91,8 +93,8 @@ getCountryDetail = () => {
       const unique = this.getUnique(data, 'suburb');
       this.countrydetaillsapi = data;
       this.testlist = data;
-      console.log(this.countrydetaillsapi, 'datttaa');
-      console.log(data, 'originalll');
+      // console.log(this.countrydetaillsapi, 'datttaa');
+      // console.log(data, 'originalll');
     },
     error => {
       console.log(error);
@@ -121,6 +123,49 @@ getCountryDetail = () => {
     console.log('this.propertytype', this.searchModel.propertytype);
 
   }
+  getSavedItem() {
+    this.api.mysavedproperty().subscribe(
+      data => {
+        // console.log(this.countrydetaillsapi, 'comedylist');
+        let i: any;
+        let a: any;
+        this.mysaved = data.results;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  // this function is used to checked for items that are stared and are in the search result and star them
+  starSearchedItems() {
+    console.log('Lord help me', this.filterdetails1, this.mysaved.length);
+    let a: any;
+    let i: any;
+    for (a = 0; a < this.filterdetails1.length; a++) {
+      for ( i = 0; i < this.mysaved.length; i++) {
+     if (this.filterdetails1[a].id_user === this.mysaved[i].id_user) {
+        console.log('yeah it does');
+      } else {
+        console.log(this.filterdetails1[a].id_user, this.mysaved[i].id_user);
+      }
+
+     }
+  }
+  }
+
+  // this funtion is used to star a search
+  starItem(i) {
+    this.api.saveproperty(i.id_user).subscribe(
+      data => {
+        // console.log(this.countrydetaillsapi, 'comedylist');
+        console.log(data, 'originalll');
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
   pricemin() {
     let pricemin  = this.filterModel.pricemin;
     pricemin = pricemin.replace(',', '');
@@ -129,14 +174,11 @@ getCountryDetail = () => {
     if (pricemin === 'Any') {
       const newlist = this.filterdetails.filter( el => el.Price >= 0);
       this.filterdetails1 = newlist;
-      console.log(newlist, this.filterdetails);
-      console.log(pricemin, 'yeajhh');
     } else {
     // filterdetails
     const newlist = this.filterdetails.filter( el => el.Price >= pricemin);
     this.filterdetails1 = newlist;
-    console.log(pricemin, 'yeajhh');
-    }
+     }
   }
   pricemax() {
     let pricemax  = this.filterModel.pricemax;
@@ -395,7 +437,7 @@ getCountryDetail = () => {
           this.next = data.next;
           this.count = data.count;
           // this.filterdetails, this.previous, this.next,
-          console.log(this.filterdetails.length, data.results, 'datttaacountt');
+          // console.log(this.filterdetails.length, data.results, 'datttaacountt');
         },
         error => {
           console.log(error);
@@ -616,8 +658,8 @@ ngOnInit() {
     const bedmin = localStorage.getItem('bedmin');
     const bedmax = localStorage.getItem('bedmax');
     console.log('valuesssss', this.searchparam, pricemin, pricemax, bedmin, bedmax);
-      this.searchitems = searchitems;
-      this.filterModel = new Filterclass(searchitems, pricemin, pricemax, bedmin, bedmax, '', 'Any', 'Any', 'Any', '', false, false, false,
+    this.searchitems = searchitems;
+    this.filterModel = new Filterclass(searchitems, pricemin, pricemax, bedmin, bedmax, '', 'Any', 'Any', 'Any', '', false, false, false,
       false, false, false, false, false, false, false, false, false, false, false, false, false, false,
       false, false, false, false, false, false, false, false
       );
@@ -628,6 +670,8 @@ ngOnInit() {
     // console.log(this.searchparam, 'yeah yeah');
     this.getFilterDetail();
     this.getCountryDetail();
+    this.getSavedItem();
+    // this.starSearchedItems();
     this.dropdownList = ['House', 'Apartment & Unit', 'Townhouse', 'Villa', 'Land',
     'Acreage', 'Rural', 'Block Of Units', 'Retirement Living'
   ];

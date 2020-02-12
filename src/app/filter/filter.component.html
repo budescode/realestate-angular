@@ -6,7 +6,9 @@
   height: 94px;
   overflow: hidden;
 }
-
+.yellow{
+  color: yellow;
+}
  .show {
   overflow: visible;
   height: auto;
@@ -16,6 +18,7 @@
     width: 100%;
    }
   </style>
+
 <div class='container'>
 <div class="row">
   <div class='col-md-8'>
@@ -123,7 +126,8 @@
         <i class='fa fa-bed' style='color:white'></i> {{i.Bedrooms}}
         <i class='fa fa-bath' style='color:white'></i> {{i.Bathrooms}}
         <i class='fa fa-car' style='color:white'></i>  {{i.Car_spaces}}
-        <i class='fa fa-star' id='star' style='color:white; float:right; cursor:pointer'></i>
+
+        <i class='fa fa-star yellow' id='{{i.id}}' style='float:right; cursor:pointer' (click)='starItem(i)'></i>
 
 
 
@@ -553,3 +557,6 @@
 <!-- // end row -->
 </div>
 <!-- end container -->
+<script>
+  console.log('everything has startedddddddddd');
+</script>
