@@ -37,6 +37,7 @@ import {
   LinkedinLoginProvider
 } from 'ng4-social-login';
 import { SavedPropertyComponent } from './saved-property/saved-property.component';
+import { TermsComponent } from './terms/terms.component';
 
 const CONFIG = new AuthServiceConfig([
   // {
@@ -102,6 +103,10 @@ const appRoutes: Routes = [
   {
     path: 'mysavedproperty',
     component: SavedPropertyComponent,
+  },
+  {
+    path: 'PrivacyPolicy',
+    component: TermsComponent,
   }
 
 
@@ -132,7 +137,8 @@ const appRoutes: Routes = [
     LogoutComponent,
     NavbarComponent,
     MypostComponent,
-    SavedPropertyComponent
+    SavedPropertyComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,
