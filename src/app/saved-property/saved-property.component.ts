@@ -12,6 +12,7 @@ export class SavedPropertyComponent implements OnInit {
   previous: any;
   next: any;
   count: any;
+  p = 1;
   constructor(private api: ApiserviceService, private router: Router) { }
 
   ngOnInit() {
