@@ -50,6 +50,7 @@ export class NavbarComponent implements OnInit {
                  localStorage.setItem('username', userData.name);
                  // set the apove apokey and myuser value for auto update
                  this.apikey = data.key;
+                 console.log(data, 'dataaa');
                  this.myuser = userData.name;
                  this.modalService.dismissAll();
                  this.router.navigate(['/']);
