@@ -43,12 +43,12 @@
         <li class="nav-item">
             <div class="form-group">
             <label class="d-inline-block" for="">Sort By:</label>
-            <select class="form-control form-control-sm d-inline-block" style="width: auto;" id="sortby" name='sortby' onchange="this.form.submit()">
+            <select class="form-control form-control-sm d-inline-block" style="width: auto;" [(ngModel)]='sortby.mysortby' id="sortby" name='sortby' (change)='sortDetails()'>
             <option value="Relevant">Most Relevant</option>
-            <option value="-created">Date (Newest - Oldest)</option>
-            <option value="created">Date (Oldest - Newest)</option>
-            <option value="Price">Price (Lowest - Highest)</option>
-            <option value="-Price">Price (Highest - Lowest)</option>
+            <option value="-newest">Date (Newest - Oldest)</option>
+            <option value="oldest">Date (Oldest - Newest)</option>
+            <option value="lowestprice">Price (Lowest - Highest)</option>
+            <option value="highestprice">Price (Highest - Lowest)</option>
             </select>
             </div>
         </li>

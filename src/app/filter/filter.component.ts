@@ -5,6 +5,7 @@ import { Classfunction } from '../classfunction';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Filterclass } from '../class/filterclass';
+import { Sort } from '../class/sort';
 
 @Component({
   selector: 'app-filter',
@@ -40,6 +41,7 @@ export class FilterComponent implements OnInit {
   filteredseachparam: any; // this will be used in this page when searching again. chack getfilterdetails and submitForm function
   searchitems = ''; // this is to place the searchitems, state and suburbs
   searchModel = new Classfunction(this.search, '', '', '', '', '');
+  sortby = new Sort('');
   filterModel = new Filterclass(this.searchitems, 'Any', 'Any', 'Any', 'Any', '', '', '', '', '', false, false, false,
   false, false, false, false, false, false, false, false, false, false, false, false, false, false,
   false, false, false, false, false, false, false, false
@@ -650,7 +652,28 @@ getCountryDetail = () => {
 
 }
 
+sortDetails() {
+  const numericArray: number[] = [2, 3, 4, 1, 5, 8, 11];
 
+
+
+  if (this.sortby.mysortby === 'Relevant') {
+    console.log('yeah its relevant');
+    this.filterdetails1 = this.filterdetails;
+  } else if (this.sortby.mysortby === 'newest') {
+    console.log('newest');
+    this.filterdetails1 = this.filterdetails;
+  } else if (this.sortby.mysortby === 'oldest') {
+    console.log('oldest');
+    this.filterdetails1 = this.filterdetails.reverse();
+  } else if (this.sortby.mysortby === 'lowestprice') {
+    const sortedArray = this.filterdetails1.sort((a, b) => parseFloat(a.Price) - parseFloat(b.Price));
+    this.filterdetails1 = sortedArray;
+  } else if (this.sortby.mysortby === 'highestprice') {
+    const sortedArray = this.filterdetails1.sort((a, b) => parseFloat(b.Price) - parseFloat(a.Price));
+    this.filterdetails1 = sortedArray;
+  }
+}
 ngOnInit() {
     const searchitems = localStorage.getItem('search');
     const pricemin = localStorage.getItem('pricemin');
